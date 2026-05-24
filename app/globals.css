@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Theme tokens ──────────────────────────────────────────────────────────
+   Dark is the visual default (matches prototype). Light auto-activates via
+   prefers-color-scheme: light. Values lifted from THEMES.dark / THEMES.light
+   in the prototype (landing-dark.jsx). */
+:root {
+  --ak-red:                    #E53935;
+  --ak-red-deep:               #B71C1C;
+
+  --ak-bg:                     #0D0D0D;
+  --ak-bg-soft:                #0A0A0A;
+  --ak-bg-deep:                #080808;
+  --ak-text:                   #FFFFFF;
+  --ak-text-mute:              rgba(255,255,255,.7);
+  --ak-text-dim:               rgba(255,255,255,.5);
+  --ak-text-faint:             rgba(255,255,255,.45);
+  --ak-surface:                #161616;
+  --ak-surface-alt:            #141414;
+  --ak-border:                 rgba(255,255,255,.06);
+  --ak-border-strong:          rgba(255,255,255,.08);
+  --ak-nav-bg:                 rgba(13,13,13,.78);
+  --ak-pill-bg:                rgba(229,57,53,.12);
+  --ak-avatar-ring:            #0D0D0D;
+  --ak-store-btn-bg:           #FFFFFF;
+  --ak-store-btn-text:         #0D0D0D;
+  --ak-store-btn-outline:      #FFFFFF;
+  --ak-store-btn-outline-border: rgba(255,255,255,.2);
+  --ak-ghost-sixty:            rgba(229,57,53,.05);
+  --ak-flare-big:              rgba(229,57,53,.19);
+  --ak-flare-edge:             rgba(229,57,53,.06);
+  --ak-flare-small:            rgba(229,57,53,.09);
+  --ak-photo-filter:           saturate(.85) contrast(1.05);
+  --ak-caption-bg:             rgba(13,13,13,.8);
+  --ak-caption-text:           #F6F4EF;
+  --ak-marquee-dim:            .25;
+  --ak-howcard-numbg:          rgba(255,255,255,.04);
+
+  /* Color scheme hint so native form controls / scrollbars follow. */
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --ak-bg:                   #F6F4EF;
+    --ak-bg-soft:              #FBFAF6;
+    --ak-bg-deep:              #EFECE3;
+    --ak-text:                 #0D0D0D;
+    --ak-text-mute:            rgba(13,13,13,.72);
+    --ak-text-dim:             rgba(13,13,13,.55);
+    --ak-text-faint:           rgba(13,13,13,.45);
+    --ak-surface:              #FFFFFF;
+    --ak-surface-alt:          #FBFAF6;
+    --ak-border:               rgba(13,13,13,.1);
+    --ak-border-strong:        rgba(13,13,13,.14);
+    --ak-nav-bg:               rgba(246,244,239,.82);
+    --ak-pill-bg:              rgba(229,57,53,.1);
+    --ak-avatar-ring:          #F6F4EF;
+    --ak-store-btn-bg:         #0D0D0D;
+    --ak-store-btn-text:       #F6F4EF;
+    --ak-store-btn-outline:    #0D0D0D;
+    --ak-store-btn-outline-border: rgba(13,13,13,.2);
+    --ak-ghost-sixty:          rgba(229,57,53,.07);
+    --ak-flare-big:            rgba(229,57,53,.13);
+    --ak-flare-edge:           rgba(229,57,53,.03);
+    --ak-flare-small:          rgba(229,57,53,.07);
+    --ak-photo-filter:         saturate(.95) contrast(1.02);
+    --ak-caption-bg:           rgba(13,13,13,.82);
+    --ak-caption-text:         #F6F4EF;
+    --ak-marquee-dim:          .3;
+    --ak-howcard-numbg:        rgba(13,13,13,.04);
+
+    color-scheme: light;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--ak-bg);
+  color: var(--ak-text);
+  font-family: var(--ak-font-sans, ui-sans-serif), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; }
+
+button { font-family: inherit; }
+
+/* Marquee animation lifted from the prototype. */
+@keyframes akMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes akSkeleton {
+  0%, 100% { opacity: .35; }
+  50%      { opacity: .6; }
+}
+
+.ak-skeleton {
+  background: var(--ak-surface);
+  border: 1px solid var(--ak-border);
+  animation: akSkeleton 1.4s ease-in-out infinite;
+}
+
+/* 3-line clamp helper used by NewsCard. */
+.ak-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
