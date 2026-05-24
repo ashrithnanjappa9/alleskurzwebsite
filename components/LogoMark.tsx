@@ -1,22 +1,31 @@
-export default function LogoMark({ size = 28 }: { size?: number }) {
+import Image from 'next/image';
+
+export default function LogoMark({ size = 40 }: { size?: number }) {
   return (
     <div
       style={{
         width: size,
         height: size,
-        borderRadius: 8,
-        background: '#E53935',
-        color: '#fff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 900,
-        fontSize: size * 0.45,
-        letterSpacing: '-.04em',
+        borderRadius: '50%',
+        overflow: 'hidden',
         flexShrink: 0,
+        display: 'block',
+        lineHeight: 0,
       }}
     >
-      AK
+      <Image
+        src="/ak-logo.png"
+        alt="alles kurz"
+        width={40}
+        height={40}
+        priority
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          display: 'block',
+        }}
+      />
     </div>
   );
 }

@@ -53,7 +53,7 @@ export default function Nav() {
           onClick={() => setOpen(false)}
           style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: 'inherit' }}
         >
-          <LogoMark size={28} />
+          <LogoMark size={40} />
           <span className="text-[15px] md:text-[16px]" style={{ fontWeight: 800, letterSpacing: '-.02em' }}>
             alles<span style={{ color: '#E53935' }}>kurz</span>
           </span>
