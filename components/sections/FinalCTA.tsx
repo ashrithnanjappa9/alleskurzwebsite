@@ -8,9 +8,9 @@ export default function FinalCTA() {
   const { lang } = useLang();
   return (
     <section
+      className="px-5 py-20 md:px-[60px] md:py-[120px]"
       style={{
         position: 'relative',
-        padding: '120px 60px',
         textAlign: 'center',
         background:
           'radial-gradient(ellipse at center, rgba(229,57,53,.16) 0%, transparent 60%), var(--ak-bg)',
@@ -21,12 +21,12 @@ export default function FinalCTA() {
       {/* Giant ghost "60" */}
       <div
         aria-hidden
+        className="text-[260px] sm:text-[360px] md:text-[520px]"
         style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          fontSize: 520,
           fontWeight: 800,
           color: 'var(--ak-ghost-sixty)',
           letterSpacing: '-.08em',
@@ -39,7 +39,7 @@ export default function FinalCTA() {
         60
       </div>
 
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: 720, margin: '0 auto' }}>
+      <div className="max-w-[720px] mx-auto" style={{ position: 'relative', zIndex: 1 }}>
         <div
           style={{
             fontSize: 12,
@@ -52,9 +52,8 @@ export default function FinalCTA() {
           {COPY.finalCTA.kicker[lang]}
         </div>
         <h2
+          className="text-[44px] sm:text-[56px] md:text-[72px] my-4 md:my-[18px]"
           style={{
-            margin: '18px 0 18px',
-            fontSize: 72,
             fontWeight: 800,
             letterSpacing: '-.035em',
             lineHeight: 0.98,
@@ -65,9 +64,9 @@ export default function FinalCTA() {
         </h2>
         {/* CHANGE 2 — replaced sub copy lives in COPY.finalCTA.sub */}
         <p
+          className="text-[16px] md:text-[18px]"
           style={{
             margin: '0 auto',
-            fontSize: 18,
             color: 'var(--ak-text-mute)',
             maxWidth: 520,
             lineHeight: 1.55,
@@ -75,25 +74,19 @@ export default function FinalCTA() {
         >
           {COPY.finalCTA.sub[lang]}
         </p>
-        <div
-          style={{
-            marginTop: 40,
-            display: 'flex',
-            gap: 12,
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-          }}
-        >
+        <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
           <StoreButton
             icon="apple"
             lead={COPY.hero.cta1Lead[lang]}
             label="App Store"
+            fullWidthMobile
           />
           <StoreButton
             icon="play"
             lead={COPY.hero.cta2Lead[lang]}
             label="Google Play"
             variant="outline"
+            fullWidthMobile
           />
         </div>
       </div>

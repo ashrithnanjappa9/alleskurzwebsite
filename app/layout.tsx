@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { LangProvider } from '@/components/LangProvider';
-import LangToggle from '@/components/LangToggle';
 import './globals.css';
 
 const inter = Inter({
@@ -28,7 +27,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de" className={inter.variable}>
       <body>
         <LangProvider>
-          <LangToggle />
           {children}
         </LangProvider>
       </body>

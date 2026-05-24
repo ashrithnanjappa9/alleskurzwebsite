@@ -4,97 +4,11 @@ import Image from 'next/image';
 import { CATS, type CatKey, type Lang } from '@/lib/copy';
 import type { Article } from '@/lib/news';
 
-type CardArticle = {
-  title: string;
-  source: string;
-  cat: CatKey | null;
-  link?: string;
-};
-
-export function NewsCard({
-  article,
-  cat,
-  border,
-}: {
-  article: CardArticle;
-  cat: CatKey;
-  border: { right: boolean; bottom: boolean; firstCol: boolean };
-}) {
-  const c = CATS[cat];
-  return (
-    <a
-      href={article.link || '#'}
-      target={article.link && article.link !== '#' ? '_blank' : undefined}
-      rel="noopener noreferrer"
-      style={{
-        display: 'block',
-        textDecoration: 'none',
-        color: 'inherit',
-        padding: '24px 24px 24px 0',
-        paddingLeft: border.firstCol ? 0 : 24,
-        borderRight: border.right ? '1px solid var(--ak-border)' : '0',
-        borderBottom: border.bottom ? '1px solid var(--ak-border)' : '0',
-        paddingBottom: border.bottom ? 28 : 0,
-        paddingTop: border.bottom ? 0 : 28,
-      }}
-    >
-      <div
-        style={{
-          fontSize: 10,
-          fontWeight: 800,
-          letterSpacing: '.18em',
-          textTransform: 'uppercase',
-          color: c.color,
-          marginBottom: 10,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 6,
-        }}
-      >
-        <span
-          style={{
-            width: 5,
-            height: 5,
-            borderRadius: '50%',
-            background: c.color,
-          }}
-        />
-        {c.de /* lang resolved at parent for header; cat label always in user lang at parent */}
-      </div>
-      <h4
-        className="ak-clamp-3"
-        style={{
-          margin: 0,
-          fontSize: 18,
-          fontWeight: 800,
-          lineHeight: 1.2,
-          letterSpacing: '-.015em',
-          color: 'var(--ak-text)',
-          textWrap: 'pretty',
-        }}
-      >
-        {article.title}
-      </h4>
-      <div
-        style={{
-          marginTop: 12,
-          fontSize: 11,
-          color: 'var(--ak-text-dim)',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <span>{article.source || 'dpa'}</span>
-        <span style={{ fontWeight: 700, color: c.color }}>60 W</span>
-      </div>
-    </a>
-  );
-}
-
 /**
- * Localized variant used by NewsGrid where the parent already knows `lang`.
- * Pass the rendered category label as a prop so this stays a pure render component.
+ * Brief card used in the 8-cat grid.
+ * Border classes are passed in via `borderClass` because the grid column count
+ * changes at different breakpoints (1/2/4), and which sides get borders depends
+ * on column count. See NewsGrid for how this is computed.
  */
 export function NewsBriefCard({
   title,
@@ -102,14 +16,14 @@ export function NewsBriefCard({
   catKey,
   catLabel,
   link,
-  border,
+  borderClass,
 }: {
   title: string;
   source: string;
   catKey: CatKey;
   catLabel: string;
   link?: string;
-  border: { right: boolean; bottom: boolean; firstCol: boolean };
+  borderClass: string;
 }) {
   const c = CATS[catKey];
   const hasRealLink = !!link && link !== '#';
@@ -118,16 +32,8 @@ export function NewsBriefCard({
       href={hasRealLink ? link : '#'}
       target={hasRealLink ? '_blank' : undefined}
       rel="noopener noreferrer"
-      style={{
-        display: 'block',
-        textDecoration: 'none',
-        color: 'inherit',
-        padding: border.bottom ? '0 24px 28px 0' : '28px 24px 0 0',
-        paddingLeft: border.firstCol ? 0 : 24,
-        borderRight: border.right ? '1px solid var(--ak-border)' : '0',
-        borderBottom: border.bottom ? '1px solid var(--ak-border)' : '0',
-        transition: 'opacity .15s ease',
-      }}
+      className={`block no-underline text-inherit py-6 md:py-7 px-0 md:px-6 ${borderClass}`}
+      style={{ transition: 'opacity .15s ease' }}
     >
       <div
         style={{
@@ -153,10 +59,9 @@ export function NewsBriefCard({
         {catLabel}
       </div>
       <h4
-        className="ak-clamp-3"
+        className="ak-clamp-3 text-[16px] md:text-[18px]"
         style={{
           margin: 0,
-          fontSize: 18,
           fontWeight: 800,
           lineHeight: 1.2,
           letterSpacing: '-.015em',
@@ -184,7 +89,8 @@ export function NewsBriefCard({
 }
 
 /**
- * Featured lead — image + kicker + headline + 2-column lede + source row.
+ * Featured lead — image + kicker + headline + 2-col lede + source row.
+ * On mobile: image stacks above the text (CSS `order` flips the visual order).
  * `image` may be a publisher-CDN URL (unoptimized) or a local picsum seed URL.
  */
 export function LeadCard({
@@ -216,16 +122,13 @@ export function LeadCard({
   const hasRealLink = !!link && link !== '#';
   return (
     <div
+      className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-6 md:gap-[44px] pb-8 md:pb-10 items-stretch md:items-end"
       style={{
-        display: 'grid',
-        gridTemplateColumns: '1.4fr 1fr',
-        gap: 44,
-        paddingBottom: 40,
         borderBottom: '2px solid var(--ak-text)',
-        alignItems: 'flex-end',
       }}
     >
-      <div>
+      {/* Text — order-2 on mobile (below image), original on desktop */}
+      <div className="order-2 md:order-1">
         <div
           style={{
             fontSize: 11,
@@ -239,9 +142,8 @@ export function LeadCard({
           {kicker ? ` · ${kicker}` : ''}
         </div>
         <h3
+          className="text-[28px] sm:text-[32px] md:text-[48px] my-4 md:my-[14px] md:mb-[22px]"
           style={{
-            margin: '14px 0 22px',
-            fontSize: 48,
             fontWeight: 800,
             letterSpacing: '-.025em',
             lineHeight: 1.02,
@@ -263,14 +165,12 @@ export function LeadCard({
           )}
         </h3>
         <p
+          className="text-[15px] md:text-[16px] columns-1 md:columns-2 gap-7"
           style={{
             margin: 0,
-            fontSize: 16,
             lineHeight: 1.65,
             color: 'var(--ak-text-mute)',
             textWrap: 'pretty',
-            columnCount: 2,
-            columnGap: 28,
           }}
         >
           {summary}
@@ -283,6 +183,7 @@ export function LeadCard({
             gap: 12,
             fontSize: 12,
             color: 'var(--ak-text-dim)',
+            flexWrap: 'wrap',
           }}
         >
           <span style={{ fontWeight: 700, color: 'var(--ak-text)' }}>{source}</span>
@@ -323,11 +224,11 @@ export function LeadCard({
         </div>
       </div>
 
-      {/* Featured image */}
+      {/* Image — order-1 on mobile (top), order-2 on desktop (right column) */}
       <div
+        className="order-1 md:order-2 h-[220px] md:h-[380px]"
         style={{
           position: 'relative',
-          height: 380,
           background: '#1a1a1a',
           overflow: 'hidden',
           borderRadius: 4,
@@ -387,7 +288,6 @@ export function LeadCard({
   );
 }
 
-/** A simple item-shaped wrapper used by the fallback path. */
-export function asCardArticle(a: Article): CardArticle {
+export function asCardArticle(a: Article) {
   return { title: a.title, source: a.source, cat: a.cat, link: a.link };
 }

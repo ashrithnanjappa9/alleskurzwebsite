@@ -10,17 +10,17 @@ export default function Marquee() {
   const triple = [...phrases, ...phrases, ...phrases];
   return (
     <div
+      className="py-9 md:py-[60px]"
       style={{
-        padding: '60px 0',
         overflow: 'hidden',
         borderBottom: '1px solid var(--ak-border)',
       }}
     >
       <div
+        className="gap-10 md:gap-[60px]"
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 60,
           whiteSpace: 'nowrap',
           flexWrap: 'nowrap',
           animation: 'akMarquee 30s linear infinite',
@@ -30,8 +30,8 @@ export default function Marquee() {
         {triple.map((p, i) => (
           <Fragment key={i}>
             <span
+              className="text-[36px] md:text-[64px]"
               style={{
-                fontSize: 64,
                 fontWeight: 800,
                 letterSpacing: '-.03em',
                 color: i % 4 === 1 ? '#E53935' : 'var(--ak-text)',
@@ -41,9 +41,8 @@ export default function Marquee() {
               {p}
             </span>
             <span
+              className="w-2 h-2 md:w-3 md:h-3"
               style={{
-                width: 12,
-                height: 12,
                 borderRadius: '50%',
                 background: '#E53935',
                 opacity: 0.6,

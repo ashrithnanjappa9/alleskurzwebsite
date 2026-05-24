@@ -9,18 +9,12 @@ export default function Hero() {
   const { lang } = useLang();
   return (
     <section
-      style={{
-        position: 'relative',
-        padding: '80px 60px 60px',
-        display: 'grid',
-        gridTemplateColumns: '1.05fr .95fr',
-        gap: 60,
-        alignItems: 'center',
-      }}
+      className="relative px-5 pt-8 pb-10 md:px-[60px] md:pt-20 md:pb-[60px] grid grid-cols-1 md:grid-cols-[1.05fr_.95fr] gap-10 md:gap-[60px] items-center overflow-hidden"
     >
-      {/* Background flares */}
+      {/* Background flares — smaller on mobile so they don't push layout width */}
       <div
         aria-hidden
+        className="hidden md:block"
         style={{
           position: 'absolute',
           top: -120,
@@ -36,6 +30,7 @@ export default function Hero() {
       />
       <div
         aria-hidden
+        className="hidden md:block"
         style={{
           position: 'absolute',
           bottom: -200,
@@ -49,10 +44,28 @@ export default function Hero() {
           zIndex: 0,
         }}
       />
+      {/* Compact mobile-only flare */}
+      <div
+        aria-hidden
+        className="md:hidden"
+        style={{
+          position: 'absolute',
+          top: -50,
+          right: -80,
+          width: 280,
+          height: 280,
+          borderRadius: '50%',
+          background:
+            'radial-gradient(circle, var(--ak-flare-big) 0%, var(--ak-flare-edge) 30%, transparent 60%)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
 
       {/* Left: copy */}
       <div style={{ position: 'relative', zIndex: 1 }}>
         <div
+          className="text-[10px] md:text-[11px]"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -61,7 +74,6 @@ export default function Hero() {
             borderRadius: 999,
             background: 'var(--ak-pill-bg)',
             border: '1px solid rgba(229,57,53,.33)',
-            fontSize: 11,
             fontWeight: 700,
             color: '#E53935',
             letterSpacing: '.14em',
@@ -81,9 +93,10 @@ export default function Hero() {
         </div>
 
         <h1
+          className="text-[40px] sm:text-[52px] md:text-[80px] mt-5 md:mt-6"
           style={{
-            margin: '24px 0 0',
-            fontSize: 80,
+            margin: 0,
+            marginTop: undefined,
             fontWeight: 800,
             lineHeight: 0.98,
             letterSpacing: '-.035em',
@@ -96,9 +109,10 @@ export default function Hero() {
         </h1>
 
         <p
+          className="text-[15px] md:text-[18px] mt-6 md:mt-7"
           style={{
-            margin: '28px 0 0',
-            fontSize: 18,
+            margin: 0,
+            marginTop: undefined,
             lineHeight: 1.55,
             color: 'var(--ak-text-mute)',
             maxWidth: 520,
@@ -109,32 +123,33 @@ export default function Hero() {
         </p>
 
         {/* CTAs */}
-        <div style={{ marginTop: 36, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+        <div className="mt-7 md:mt-9 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
           <StoreButton
             icon="apple"
             lead={COPY.hero.cta1Lead[lang]}
-            label={lang === 'de' ? 'App Store' : 'App Store'}
+            label="App Store"
+            fullWidthMobile
           />
           <StoreButton
             icon="play"
             lead={COPY.hero.cta2Lead[lang]}
             label="Google Play"
             variant="outline"
+            fullWidthMobile
           />
         </div>
 
-        {/* Trust line — CHANGE 3 applied (no fabricated reader count). */}
+        {/* Trust line — CHANGE 3 applied */}
         <div
+          className="text-[12px] md:text-[13px] mt-6 md:mt-7"
           style={{
-            marginTop: 28,
             display: 'flex',
             alignItems: 'center',
             gap: 14,
-            fontSize: 13,
             color: 'var(--ak-text-dim)',
           }}
         >
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex', flexShrink: 0 }}>
             {[0, 1, 2, 3].map((i) => (
               <div
                 key={i}
@@ -153,14 +168,10 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Right: phone */}
+      {/* Right: phone — scaled on mobile to fit narrow screens */}
       <div
-        style={{
-          position: 'relative',
-          zIndex: 1,
-          display: 'flex',
-          justifyContent: 'center',
-        }}
+        className="flex justify-center scale-[.78] origin-top md:scale-100 -mb-32 md:mb-0"
+        style={{ position: 'relative', zIndex: 1 }}
       >
         <PhoneSwipeDeck />
       </div>

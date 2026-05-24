@@ -7,30 +7,31 @@ export default function Stats() {
   const { lang } = useLang();
   return (
     <section
+      className="grid grid-cols-2 md:grid-cols-4 px-5 py-10 md:px-[60px] md:pt-5 md:pb-[60px] mt-8 md:mt-10"
       style={{
-        padding: '20px 60px 60px',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)',
         gap: 0,
         borderTop: '1px solid var(--ak-border-strong)',
         borderBottom: '1px solid var(--ak-border-strong)',
-        marginTop: 40,
       }}
     >
       {COPY.stats.map((s, i) => (
         <div
           key={s.n}
-          style={{
-            padding: '36px 24px',
-            borderLeft: i ? '1px solid var(--ak-border-strong)' : 0,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 8,
-          }}
+          className={[
+            'px-4 py-6 md:px-6 md:py-9 flex flex-col gap-2',
+            // Mobile 2-col borders: left border on right-column cells (i % 2 === 1),
+            //                       top border on second-row cells (i >= 2).
+            i % 2 === 1 ? 'border-l border-ak-border-strong' : '',
+            i >= 2 ? 'border-t md:border-t-0 border-ak-border-strong' : '',
+            // Desktop 4-col: kill the mobile-only top border on cell 2 (already md:border-t-0),
+            //                and add a left border to cells 1,2,3 (i >= 1).
+            i >= 1 ? 'md:border-l md:border-ak-border-strong' : '',
+            // Cell 2 has no mobile left border (i % 2 === 0) but needs desktop left border (handled above).
+          ].join(' ')}
         >
           <div
+            className="text-[36px] md:text-[56px]"
             style={{
-              fontSize: 56,
               fontWeight: 800,
               color: '#E53935',
               letterSpacing: '-.04em',
@@ -41,8 +42,8 @@ export default function Stats() {
             {s.n}
           </div>
           <div
+            className="text-[11px] md:text-[12px]"
             style={{
-              fontSize: 12,
               color: 'var(--ak-text-dim)',
               letterSpacing: '.08em',
               textTransform: 'uppercase',

@@ -11,8 +11,8 @@ export default function BusinessPage() {
     <main>
       <Nav />
       <section
+        className="px-6 pt-32 pb-40 md:px-[60px] md:pt-[160px] md:pb-[200px]"
         style={{
-          padding: '160px 60px 200px',
           minHeight: 'calc(100vh - 200px)',
           display: 'flex',
           alignItems: 'center',
@@ -20,11 +20,11 @@ export default function BusinessPage() {
           textAlign: 'center',
         }}
       >
-        <div style={{ maxWidth: 720, margin: '0 auto' }}>
+        <div className="max-w-[720px] mx-auto">
           <h1
+            className="text-[44px] sm:text-[56px] md:text-[72px]"
             style={{
               margin: 0,
-              fontSize: 72,
               fontWeight: 800,
               letterSpacing: '-.035em',
               lineHeight: 0.98,
@@ -34,9 +34,10 @@ export default function BusinessPage() {
             {COPY.business.heading[lang]}
           </h1>
           <p
+            className="text-[18px] md:text-[22px] mt-6"
             style={{
-              margin: '24px 0 0',
-              fontSize: 22,
+              margin: 0,
+              marginTop: undefined,
               color: 'var(--ak-text-mute)',
               lineHeight: 1.5,
             }}

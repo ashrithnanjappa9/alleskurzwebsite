@@ -58,16 +58,8 @@ export default function Polls() {
   const [voted, setVoted] = useState<Record<string, string | undefined>>({});
 
   return (
-    <section id="polls" style={{ padding: '120px 60px' }}>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 64,
-          alignItems: 'flex-start',
-          paddingBottom: 56,
-        }}
-      >
+    <section id="polls" className="px-5 py-16 md:px-[60px] md:py-[120px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 items-start pb-10 md:pb-14">
         <div>
           <div
             style={{
@@ -96,9 +88,10 @@ export default function Polls() {
             {COPY.polls.eyebrow[lang]}
           </div>
           <h2
+            className="text-[34px] sm:text-[42px] md:text-[52px] mt-4 md:mt-[18px]"
             style={{
-              margin: '18px 0 0',
-              fontSize: 52,
+              margin: 0,
+              marginTop: undefined,
               fontWeight: 800,
               letterSpacing: '-.03em',
               lineHeight: 1.02,
@@ -109,11 +102,11 @@ export default function Polls() {
             {COPY.polls.title[lang]}
           </h2>
         </div>
-        <div style={{ paddingTop: 28 }}>
+        <div className="pt-0 md:pt-7">
           <p
+            className="text-[15px] md:text-[17px]"
             style={{
               margin: 0,
-              fontSize: 17,
               fontStyle: 'italic',
               color: 'var(--ak-text-mute)',
               lineHeight: 1.55,
@@ -125,13 +118,7 @@ export default function Polls() {
         </div>
       </div>
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: 24,
-        }}
-      >
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
         {POLLS.map((p) => (
           <PollCard
             key={p.id}
@@ -160,16 +147,15 @@ function PollCard({
   const c = CATS[poll.cat];
   return (
     <div
+      className="p-5 md:p-[26px] min-h-[280px] md:min-h-[320px]"
       style={{
         background: 'var(--ak-surface-alt)',
         border: '1px solid var(--ak-border-strong)',
         borderRadius: 22,
-        padding: 26,
         position: 'relative',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        minHeight: 320,
       }}
     >
       <div
@@ -206,16 +192,13 @@ function PollCard({
           alignSelf: 'flex-start',
         }}
       >
-        <span
-          style={{ width: 5, height: 5, borderRadius: '50%', background: c.color }}
-        />
+        <span style={{ width: 5, height: 5, borderRadius: '50%', background: c.color }} />
         {c[lang]}
       </div>
 
       <div
+        className="text-[18px] md:text-[20px] mt-4"
         style={{
-          marginTop: 16,
-          fontSize: 20,
           fontWeight: 700,
           color: 'var(--ak-text)',
           lineHeight: 1.25,

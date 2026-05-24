@@ -8,20 +8,13 @@ export default function Footer() {
   const { lang } = useLang();
   return (
     <footer
+      className="px-5 pt-10 pb-8 md:px-[60px] md:pt-[60px] md:pb-10"
       style={{
-        padding: '60px 60px 40px',
         borderTop: '1px solid var(--ak-border-strong)',
         background: 'var(--ak-bg-deep)',
       }}
     >
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1.6fr 1fr 1fr 1fr',
-          gap: 60,
-          marginBottom: 48,
-        }}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.6fr_1fr_1fr_1fr] gap-8 md:gap-[60px] mb-10 md:mb-12">
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <LogoMark size={36} />
@@ -86,12 +79,9 @@ export default function Footer() {
       </div>
 
       <div
+        className="pt-6 flex flex-col gap-3 md:flex-row md:justify-between items-start md:items-center"
         style={{
-          paddingTop: 24,
           borderTop: '1px solid var(--ak-border)',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
           fontSize: 12,
           color: 'var(--ak-text-faint)',
         }}

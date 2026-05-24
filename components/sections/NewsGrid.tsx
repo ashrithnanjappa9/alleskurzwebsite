@@ -66,9 +66,7 @@ export default function NewsGrid() {
     };
   }, [lang]);
 
-  // Skeleton ONLY on first load (per spec). After first resolution, never
-  // skeleton again even if a later refresh returns nothing — we silently
-  // keep showing the previous data or fall back to samples.
+  // Skeleton ONLY on first load (per spec).
   const showSkeleton = firstLoad && articles === null;
 
   const useFallback = !showSkeleton && (articles === null || articles.length === 0);
@@ -79,23 +77,15 @@ export default function NewsGrid() {
   return (
     <section
       id="stories"
+      className="px-5 py-16 md:px-[60px] md:py-[120px]"
       style={{
-        padding: '120px 60px',
         background: 'var(--ak-bg-soft)',
         borderTop: '1px solid var(--ak-border)',
         borderBottom: '1px solid var(--ak-border)',
       }}
     >
       {/* Section header */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 60,
-          alignItems: 'flex-start',
-          paddingBottom: 56,
-        }}
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-[60px] items-start pb-10 md:pb-14">
         <div>
           <div
             style={{
@@ -109,9 +99,10 @@ export default function NewsGrid() {
             {COPY.stories.eyebrow[lang]}
           </div>
           <h2
+            className="text-[34px] sm:text-[42px] md:text-[60px] mt-4"
             style={{
-              margin: '14px 0 0',
-              fontSize: 60,
+              margin: 0,
+              marginTop: undefined,
               fontWeight: 800,
               letterSpacing: '-.03em',
               lineHeight: 1,
@@ -122,11 +113,11 @@ export default function NewsGrid() {
             {COPY.stories.title[lang]}
           </h2>
         </div>
-        <div style={{ paddingTop: 28 }}>
+        <div className="pt-0 md:pt-7">
           <p
+            className="text-[16px] md:text-[18px]"
             style={{
               margin: 0,
-              fontSize: 18,
               fontStyle: 'italic',
               color: 'var(--ak-text-mute)',
               lineHeight: 1.55,
@@ -158,38 +149,20 @@ export default function NewsGrid() {
       )}
 
       {/* 8-card grid */}
-      <div
-        style={{
-          marginTop: 40,
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: 0,
-        }}
-      >
+      <div className="ak-news-grid mt-8 md:mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
         {showSkeleton
-          ? Array.from({ length: 8 }).map((_, i) => (
-              <BriefSkeleton key={i} index={i} />
-            ))
-          : briefs.map((b, i) => {
-              const isTopRow = i < 4;
-              const isLastCol = (i + 1) % 4 === 0;
-              const isFirstCol = i % 4 === 0;
-              return (
-                <NewsBriefCard
-                  key={`${b.catKey}-${i}`}
-                  catKey={b.catKey}
-                  catLabel={CATS[b.catKey][lang]}
-                  title={b.title}
-                  source={b.source}
-                  link={b.link}
-                  border={{
-                    right: !isLastCol,
-                    bottom: isTopRow,
-                    firstCol: isFirstCol,
-                  }}
-                />
-              );
-            })}
+          ? Array.from({ length: 8 }).map((_, i) => <BriefSkeleton key={i} />)
+          : briefs.map((b, i) => (
+              <NewsBriefCard
+                key={`${b.catKey}-${i}`}
+                catKey={b.catKey}
+                catLabel={CATS[b.catKey][lang]}
+                title={b.title}
+                source={b.source}
+                link={b.link}
+                borderClass=""
+              />
+            ))}
       </div>
     </section>
   );
@@ -296,24 +269,18 @@ function sampleLead(lang: 'de' | 'en'): DisplayLead {
 function LeadSkeleton() {
   return (
     <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '1.4fr 1fr',
-        gap: 44,
-        paddingBottom: 40,
-        borderBottom: '2px solid var(--ak-text)',
-        alignItems: 'flex-end',
-      }}
+      className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-6 md:gap-[44px] pb-8 md:pb-10 items-stretch md:items-end"
+      style={{ borderBottom: '2px solid var(--ak-text)' }}
     >
-      <div>
+      <div className="order-2 md:order-1">
         <div className="ak-skeleton" style={{ width: 180, height: 14, borderRadius: 4 }} />
         <div
           className="ak-skeleton"
-          style={{ marginTop: 18, width: '100%', height: 42, borderRadius: 6 }}
+          style={{ marginTop: 18, width: '100%', height: 32, borderRadius: 6 }}
         />
         <div
           className="ak-skeleton"
-          style={{ marginTop: 12, width: '88%', height: 42, borderRadius: 6 }}
+          style={{ marginTop: 12, width: '88%', height: 32, borderRadius: 6 }}
         />
         <div
           className="ak-skeleton"
@@ -332,26 +299,17 @@ function LeadSkeleton() {
           style={{ marginTop: 22, width: 240, height: 16, borderRadius: 4 }}
         />
       </div>
-      <div className="ak-skeleton" style={{ height: 380, borderRadius: 4 }} />
+      <div
+        className="order-1 md:order-2 h-[220px] md:h-[380px] ak-skeleton"
+        style={{ borderRadius: 4 }}
+      />
     </div>
   );
 }
 
-function BriefSkeleton({ index }: { index: number }) {
-  const isTopRow = index < 4;
-  const isLastCol = (index + 1) % 4 === 0;
-  const isFirstCol = index % 4 === 0;
+function BriefSkeleton() {
   return (
-    <div
-      style={{
-        padding: '24px 24px 24px 0',
-        paddingLeft: isFirstCol ? 0 : 24,
-        borderRight: isLastCol ? 0 : '1px solid var(--ak-border)',
-        borderBottom: isTopRow ? '1px solid var(--ak-border)' : 0,
-        paddingBottom: isTopRow ? 28 : 0,
-        paddingTop: isTopRow ? 0 : 28,
-      }}
-    >
+    <div className="py-6 md:py-7 px-0 md:px-6">
       <div className="ak-skeleton" style={{ width: 90, height: 11, borderRadius: 3 }} />
       <div
         className="ak-skeleton"

@@ -3,13 +3,15 @@ type Props = {
   label: string;
   lead: string;
   variant?: 'solid' | 'outline';
+  fullWidthMobile?: boolean;
 };
 
-export default function StoreButton({ icon, label, lead, variant = 'solid' }: Props) {
+export default function StoreButton({ icon, label, lead, variant = 'solid', fullWidthMobile = false }: Props) {
   const outline = variant === 'outline';
   return (
     <button
       type="button"
+      className={fullWidthMobile ? 'w-full justify-center sm:w-auto sm:justify-start' : ''}
       style={{
         display: 'inline-flex',
         alignItems: 'center',
