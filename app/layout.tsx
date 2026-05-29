@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: 'alles kurz — Nachrichten in 60 Wörtern',
   description:
     'Jede Story. Genau 60 Wörter. Kuratiert von Redakteur:innen, zusammengefasst von KI, in unter 30 Sekunden gelesen.',
-  metadataBase: new URL('https://alles-kurz.app'),
+  metadataBase: new URL('https://www.alleskurz.com'),
   openGraph: {
     title: 'alles kurz — Nachrichten in 60 Wörtern',
     description: 'Jede Story. Genau 60 Wörter.',
