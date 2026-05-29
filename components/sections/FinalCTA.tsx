@@ -8,7 +8,7 @@ export default function FinalCTA() {
   const { lang } = useLang();
   return (
     <section
-      className="px-5 py-20 md:px-[60px] md:py-[120px]"
+      className="px-5 py-24 md:px-[60px] md:py-[120px]"
       style={{
         position: 'relative',
         textAlign: 'center',

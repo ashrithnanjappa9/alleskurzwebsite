@@ -7,7 +7,7 @@ export default function Stats() {
   const { lang } = useLang();
   return (
     <section
-      className="grid grid-cols-2 md:grid-cols-4 px-5 py-10 md:px-[60px] md:pt-5 md:pb-[60px] mt-8 md:mt-10"
+      className="grid grid-cols-2 md:grid-cols-4 px-5 py-14 md:px-[60px] md:pt-5 md:pb-[60px] mt-12 md:mt-10"
       style={{
         gap: 0,
         borderTop: '1px solid var(--ak-border-strong)',

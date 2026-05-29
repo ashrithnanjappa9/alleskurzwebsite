@@ -58,7 +58,7 @@ export default function Polls() {
   const [voted, setVoted] = useState<Record<string, string | undefined>>({});
 
   return (
-    <section id="polls" className="px-5 py-16 md:px-[60px] md:py-[120px]">
+    <section id="polls" className="px-5 py-20 md:px-[60px] md:py-[120px]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 items-start pb-10 md:pb-14">
         <div>
           <div

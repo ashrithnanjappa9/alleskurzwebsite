@@ -9,7 +9,7 @@ export default function Hero() {
   const { lang } = useLang();
   return (
     <section
-      className="relative px-5 pt-8 pb-10 md:px-[60px] md:pt-20 md:pb-[60px] grid grid-cols-1 md:grid-cols-[1.05fr_.95fr] gap-10 md:gap-[60px] items-center overflow-hidden"
+      className="relative px-5 pt-12 pb-16 md:px-[60px] md:pt-24 md:pb-20 grid grid-cols-1 md:grid-cols-[1.05fr_.95fr] gap-12 md:gap-[60px] items-center overflow-hidden"
     >
       {/* Background flares — smaller on mobile so they don't push layout width */}
       <div
@@ -93,7 +93,7 @@ export default function Hero() {
         </div>
 
         <h1
-          className="text-[40px] sm:text-[52px] md:text-[80px] mt-5 md:mt-6"
+          className="text-[40px] sm:text-[52px] md:text-[80px] mt-8 md:mt-10"
           style={{
             margin: 0,
             marginTop: undefined,
@@ -109,7 +109,7 @@ export default function Hero() {
         </h1>
 
         <p
-          className="text-[15px] md:text-[18px] mt-6 md:mt-7"
+          className="text-[15px] md:text-[18px] mt-7 md:mt-8"
           style={{
             margin: 0,
             marginTop: undefined,
@@ -123,7 +123,7 @@ export default function Hero() {
         </p>
 
         {/* CTAs */}
-        <div className="mt-7 md:mt-9 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+        <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
           <StoreButton
             icon="apple"
             lead={COPY.hero.cta1Lead[lang]}
@@ -141,7 +141,7 @@ export default function Hero() {
 
         {/* Trust line — CHANGE 3 applied */}
         <div
-          className="text-[12px] md:text-[13px] mt-6 md:mt-7"
+          className="text-[12px] md:text-[13px] mt-7 md:mt-8"
           style={{
             display: 'flex',
             alignItems: 'center',

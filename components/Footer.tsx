@@ -8,7 +8,7 @@ export default function Footer() {
   const { lang } = useLang();
   return (
     <footer
-      className="px-5 pt-10 pb-8 md:px-[60px] md:pt-[60px] md:pb-10"
+      className="px-5 pt-14 pb-10 md:px-[60px] md:pt-[60px] md:pb-10"
       style={{
         borderTop: '1px solid var(--ak-border-strong)',
         background: 'var(--ak-bg-deep)',

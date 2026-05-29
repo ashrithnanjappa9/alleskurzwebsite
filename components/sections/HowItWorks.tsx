@@ -9,7 +9,7 @@ export default function HowItWorks() {
   return (
     <section
       id="how"
-      className="px-5 py-16 md:px-[60px] md:py-[120px]"
+      className="px-5 py-20 md:px-[60px] md:py-[120px]"
     >
       <SectionHeader
         eyebrow={COPY.how.eyebrow[lang]}

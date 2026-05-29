@@ -10,7 +10,7 @@ export default function Marquee() {
   const triple = [...phrases, ...phrases, ...phrases];
   return (
     <div
-      className="py-9 md:py-[60px]"
+      className="py-12 md:py-[60px]"
       style={{
         overflow: 'hidden',
         borderBottom: '1px solid var(--ak-border)',

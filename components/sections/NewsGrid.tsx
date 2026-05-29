@@ -77,7 +77,7 @@ export default function NewsGrid() {
   return (
     <section
       id="stories"
-      className="px-5 py-16 md:px-[60px] md:py-[120px]"
+      className="px-5 py-20 md:px-[60px] md:py-[120px]"
       style={{
         background: 'var(--ak-bg-soft)',
         borderTop: '1px solid var(--ak-border)',

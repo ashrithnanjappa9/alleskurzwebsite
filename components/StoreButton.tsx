@@ -11,12 +11,17 @@ export default function StoreButton({ icon, label, lead, variant = 'solid', full
   return (
     <button
       type="button"
-      className={fullWidthMobile ? 'w-full justify-center sm:w-auto sm:justify-start' : ''}
+      className={
+        // Lighter padding when stacked full-width on mobile so the buttons don't feel heavy.
+        // sm+ restores the original prototype padding.
+        fullWidthMobile
+          ? 'w-full justify-center sm:w-auto sm:justify-start px-4 py-[10px] sm:px-5 sm:py-[14px]'
+          : 'px-5 py-[14px]'
+      }
       style={{
         display: 'inline-flex',
         alignItems: 'center',
         gap: 12,
-        padding: '14px 20px',
         borderRadius: 14,
         background: outline ? 'transparent' : 'var(--ak-store-btn-bg)',
         color: outline ? 'var(--ak-store-btn-outline)' : 'var(--ak-store-btn-text)',
