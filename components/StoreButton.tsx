@@ -4,20 +4,86 @@ type Props = {
   lead: string;
   variant?: 'solid' | 'outline';
   fullWidthMobile?: boolean;
+  /** Render as a muted, non-interactive "coming soon" pill. */
+  comingSoon?: boolean;
+  /** Text shown in the hover tooltip when comingSoon is true. */
+  tooltip?: string;
 };
 
-export default function StoreButton({ icon, label, lead, variant = 'solid', fullWidthMobile = false }: Props) {
+export default function StoreButton({
+  icon,
+  label,
+  lead,
+  variant = 'solid',
+  fullWidthMobile = false,
+  comingSoon = false,
+  tooltip,
+}: Props) {
   const outline = variant === 'outline';
+  const paddingClass = fullWidthMobile
+    ? 'w-full justify-center sm:w-auto sm:justify-start px-4 py-[10px] sm:px-5 sm:py-[14px]'
+    : 'px-5 py-[14px]';
+
+  if (comingSoon) {
+    return (
+      <span
+        className={`group relative inline-flex ${fullWidthMobile ? 'w-full sm:w-auto' : ''}`}
+      >
+        <button
+          type="button"
+          disabled
+          aria-disabled="true"
+          aria-label={tooltip ?? label}
+          title={tooltip}
+          className={paddingClass}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 12,
+            borderRadius: 14,
+            background: 'var(--ak-surface)',
+            color: 'var(--ak-text-mute)',
+            border: '1px solid var(--ak-border-strong)',
+            cursor: 'not-allowed',
+            font: 'inherit',
+            transition: 'all .2s ease',
+            // Premium-muted, not broken: full text but softened tone.
+            opacity: 0.92,
+          }}
+        >
+          <span style={{ opacity: 0.85, display: 'inline-flex' }}>
+            <StoreIcon name={icon} />
+          </span>
+          <div style={{ textAlign: 'left', lineHeight: 1.1 }}>
+            <div style={{ fontSize: 10, fontWeight: 500, opacity: 0.7 }}>{lead}</div>
+            <div style={{ fontSize: 15, fontWeight: 700 }}>{label}</div>
+          </div>
+        </button>
+        {tooltip && (
+          <span
+            role="tooltip"
+            className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-md opacity-0 transition-opacity duration-150 group-hover:opacity-100 z-20 px-3 py-[7px]"
+            style={{
+              background: 'var(--ak-bg-deep)',
+              color: 'var(--ak-text)',
+              border: '1px solid var(--ak-border-strong)',
+              fontSize: 11,
+              fontWeight: 500,
+              letterSpacing: '.01em',
+              boxShadow: '0 6px 18px rgba(0,0,0,.28)',
+            }}
+          >
+            {tooltip}
+          </span>
+        )}
+      </span>
+    );
+  }
+
   return (
     <button
       type="button"
-      className={
-        // Lighter padding when stacked full-width on mobile so the buttons don't feel heavy.
-        // sm+ restores the original prototype padding.
-        fullWidthMobile
-          ? 'w-full justify-center sm:w-auto sm:justify-start px-4 py-[10px] sm:px-5 sm:py-[14px]'
-          : 'px-5 py-[14px]'
-      }
+      className={paddingClass}
       style={{
         display: 'inline-flex',
         alignItems: 'center',

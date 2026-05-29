@@ -126,8 +126,10 @@ export default function Hero() {
         <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
           <StoreButton
             icon="apple"
-            lead={COPY.hero.cta1Lead[lang]}
-            label="App Store"
+            lead="iOS"
+            label="Coming Soon"
+            comingSoon
+            tooltip={lang === 'de' ? 'iOS — demnächst verfügbar' : 'iOS — coming soon'}
             fullWidthMobile
           />
           <StoreButton
