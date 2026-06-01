@@ -2,6 +2,12 @@ export type Lang = 'de' | 'en';
 
 export type Bi = { de: string; en: string };
 
+/**
+ * One row in a footer column. `href` is optional — items without it
+ * render as a placeholder `<a href="#">` until a real page exists.
+ */
+export type FooterItem = { label: Bi; href?: string };
+
 export const BRAND = {
   red:     '#E53935',
   redDeep: '#B71C1C',
@@ -149,7 +155,7 @@ export const COPY = {
           { label: { de: 'iOS App', en: 'iOS app' } as Bi },
           { label: { de: 'Android App', en: 'Android app' } as Bi },
           { label: { de: 'Web Reader', en: 'Web reader' } as Bi },
-        ],
+        ] as FooterItem[],
       },
       {
         heading: { de: 'Redaktion', en: 'Newsroom' } as Bi,
@@ -158,7 +164,7 @@ export const COPY = {
           { label: { de: 'Standards', en: 'Standards' } as Bi },
           { label: { de: 'Methodik', en: 'Method' } as Bi },
           { label: { de: 'Jobs', en: 'Careers' } as Bi },
-        ],
+        ] as FooterItem[],
       },
       {
         heading: { de: 'Rechtliches', en: 'Legal' } as Bi,
@@ -168,7 +174,7 @@ export const COPY = {
           { label: { de: 'AGB', en: 'Terms' } as Bi },
           { label: { de: 'Presse', en: 'Press' } as Bi },
           { label: { de: 'Kontakt', en: 'Contact' } as Bi, href: '/kontakt' },
-        ],
+        ] as FooterItem[],
       },
     ],
     rights: {
