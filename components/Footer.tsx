@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useLang } from './LangProvider';
 import { COPY } from '@/lib/copy';
 import LogoMark from './LogoMark';
@@ -59,20 +60,26 @@ export default function Footer() {
                 gap: 10,
               }}
             >
-              {col.items.map((it) => (
-                <li key={it.de}>
-                  <a
-                    href="#"
-                    style={{
-                      color: 'var(--ak-text-mute)',
-                      textDecoration: 'none',
-                      fontSize: 14,
-                    }}
-                  >
-                    {it[lang]}
-                  </a>
-                </li>
-              ))}
+              {col.items.map((it) => {
+                const linkStyle = {
+                  color: 'var(--ak-text-mute)',
+                  textDecoration: 'none',
+                  fontSize: 14,
+                } as const;
+                return (
+                  <li key={it.label.de}>
+                    {it.href ? (
+                      <Link href={it.href} style={linkStyle}>
+                        {it.label[lang]}
+                      </Link>
+                    ) : (
+                      <a href="#" style={linkStyle}>
+                        {it.label[lang]}
+                      </a>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ))}
