@@ -1,7 +1,7 @@
 'use client';
 
 import { useLang } from '../LangProvider';
-import { COPY } from '@/lib/copy';
+import { APP_STORE_URL, COPY } from '@/lib/copy';
 import StoreButton from '../StoreButton';
 
 export default function FinalCTA() {
@@ -79,6 +79,7 @@ export default function FinalCTA() {
             icon="apple"
             lead={COPY.hero.cta1Lead[lang]}
             label="App Store"
+            href={APP_STORE_URL}
             fullWidthMobile
           />
           <StoreButton

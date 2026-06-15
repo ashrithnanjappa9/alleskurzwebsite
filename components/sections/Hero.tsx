@@ -1,7 +1,7 @@
 'use client';
 
 import { useLang } from '../LangProvider';
-import { COPY } from '@/lib/copy';
+import { APP_STORE_URL, COPY } from '@/lib/copy';
 import PhoneSwipeDeck from '../PhoneSwipeDeck';
 import StoreButton from '../StoreButton';
 
@@ -126,10 +126,9 @@ export default function Hero() {
         <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
           <StoreButton
             icon="apple"
-            lead="iOS"
-            label="Coming Soon"
-            comingSoon
-            tooltip={lang === 'de' ? 'iOS — demnächst verfügbar' : 'iOS — coming soon'}
+            lead={COPY.hero.cta1Lead[lang]}
+            label="App Store"
+            href={APP_STORE_URL}
             fullWidthMobile
           />
           <StoreButton

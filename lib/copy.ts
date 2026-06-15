@@ -15,6 +15,9 @@ export const BRAND = {
   cream:   '#F6F4EF',
 } as const;
 
+/** Live App Store URL for the iOS app. */
+export const APP_STORE_URL = 'https://apps.apple.com/us/app/alleskurz/id6779738506';
+
 export type CatKey =
   | 'politik'
   | 'wirtschaft'
@@ -42,7 +45,7 @@ export const COPY = {
     stories:  { de: 'Stories',           en: 'Stories' } as Bi,
     polls:    { de: 'Polls',             en: 'Polls' } as Bi,
     business: { de: 'Für Unternehmen',   en: 'For Business' } as Bi,
-    download: { de: 'Holen',             en: 'Get the app' } as Bi,
+    download: { de: 'Jetzt Download',    en: 'Get the app' } as Bi,
   },
   hero: {
     eyebrow: {
