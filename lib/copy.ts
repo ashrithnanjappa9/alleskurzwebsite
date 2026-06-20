@@ -172,21 +172,96 @@ export const COPY = {
       {
         heading: { de: 'Rechtliches', en: 'Legal' } as Bi,
         items: [
-          { label: { de: 'Impressum', en: 'Imprint' } as Bi },
+          { label: { de: 'Impressum', en: 'Imprint' } as Bi, href: '/impressum' },
           { label: { de: 'Datenschutz', en: 'Privacy' } as Bi, href: '/datenschutz' },
-          { label: { de: 'AGB', en: 'Terms' } as Bi },
-          { label: { de: 'Presse', en: 'Press' } as Bi },
+          { label: { de: 'AGB', en: 'Terms' } as Bi, href: '/agb' },
+          { label: { de: 'Inhaltsrichtlinie', en: 'Content Policy' } as Bi, href: '/content-policy' },
           { label: { de: 'Kontakt', en: 'Contact' } as Bi, href: '/kontakt' },
         ] as FooterItem[],
       },
     ],
     rights: {
-      de: '© 2026 Alles Kurz GmbH · Hergestellt in Berlin',
-      en: '© 2026 Alles Kurz GmbH · Made in Berlin',
+      de: '© 2026 alles kurz · Hergestellt in Berlin',
+      en: '© 2026 alles kurz · Made in Berlin',
     } as Bi,
   },
   business: {
     heading: { de: 'Für Unternehmen', en: 'For Business' } as Bi,
     sub:     { de: 'Kommt bald.',     en: 'Coming soon.' } as Bi,
+  },
+  contentPolicy: {
+    eyebrow: { de: 'Rechtliches', en: 'Legal' } as Bi,
+    title: { de: 'Inhaltsrichtlinie', en: 'Content Policy' } as Bi,
+    updated: { de: 'Stand: 20. Juni 2026', en: 'Last updated: 20 June 2026' } as Bi,
+    intro: {
+      de: 'Diese Richtlinie beschreibt, wie alles-kurz Inhalte von Drittanbietern aggregiert, zusammenfasst und auf Quellen verweist.',
+      en: 'This policy describes how alles-kurz aggregates, summarises, and attributes third-party content.',
+    } as Bi,
+    sections: [
+      {
+        heading: { de: 'Was alles-kurz ist', en: 'What alles-kurz is' } as Bi,
+        body: {
+          de: 'alles-kurz ist eine KI-gestützte News-Aggregations-App für deutschsprachige Leser:innen. Die App sammelt, verarbeitet und zeigt Nachrichten­zusammenfassungen, die ausschließlich aus öffentlich zugänglichen RSS-Feeds von Drittanbietern stammen.',
+          en: 'alles-kurz is an AI-powered news aggregation app for German-speaking readers. The app collects, processes, and displays news summaries sourced exclusively from publicly available RSS feeds published by third-party news organisations.',
+        } as Bi,
+      },
+      {
+        heading: { de: 'Wie wir RSS-Feeds nutzen', en: 'How we use RSS feeds' } as Bi,
+        body: {
+          de: 'RSS (Really Simple Syndication) ist ein offener Web-Standard, mit dem Verlage ihre Inhalte für Aggregatoren, Feed-Reader und Drittplattformen verteilen. Mit der Veröffentlichung eines RSS-Feeds stellt ein Verlag Schlagzeilen und Artikel-Metadaten zur Aggregation bereit. alles-kurz bezieht ausschließlich von RSS-Endpunkten, die öffentlich erreichbar sind und nicht per robots.txt eingeschränkt werden. Wir scrapen keine Websites, umgehen keine Paywalls und greifen nicht auf Inhalte zu, die nicht ausdrücklich per RSS angeboten werden.',
+          en: 'RSS (Really Simple Syndication) is an open web standard that news publishers use to distribute their content to aggregators, feed readers, and third-party platforms. By publishing an RSS feed, a publisher makes their headlines and article metadata available for aggregation. alles-kurz fetches only from RSS endpoints that are publicly accessible and not restricted by the publisher’s robots.txt file. We do not scrape websites, bypass paywalls, or access content that is not explicitly made available via RSS.',
+        } as Bi,
+      },
+      {
+        heading: { de: 'Wie wir Inhalte zusammenfassen', en: 'How we summarise content' } as Bi,
+        body: {
+          de: 'Jeder Artikel wird mit einem KI-Sprachmodell auf exakt 60 Wörter zusammengefasst. Die Zusammenfassungen sind transformativ — sie sind keine Reproduktion des Originaltexts. Der vollständige Originalartikel ist immer direkt aus der App verlinkt und erreichbar. Wir zeigen oder speichern keine vollständigen Artikeltexte.',
+          en: 'Each article is summarised to exactly 60 words using an AI language model. Summaries are transformative — they are not reproductions of the original text. The full original article is always linked and accessible directly from the app. We do not display or store full article text.',
+        } as Bi,
+      },
+      {
+        heading: { de: 'Quellenangabe', en: 'Source attribution' } as Bi,
+        body: {
+          de: 'Jede in alles-kurz angezeigte Zusammenfassung enthält den Namen des Originalverlags und einen direkten Link zum Quellartikel. KI-generierte Zusammenfassungen werden nicht als eigenständiger Journalismus dargestellt.',
+          en: 'Every summary displayed in alles-kurz includes the name of the original publisher and a direct link to the source article. We do not present AI-generated summaries as original journalism.',
+        } as Bi,
+      },
+      {
+        heading: { de: 'robots.txt-Konformität', en: 'robots.txt compliance' } as Bi,
+        body: {
+          de: 'Bevor wir eine Quelle abrufen, prüft unser Backend die robots.txt-Datei dieser Quelle. Hat ein Verlag automatisierten Zugriff eingeschränkt, überspringen wir die Quelle vollständig. Diese Prüfung läuft automatisch bei jedem Abrufzyklus.',
+          en: 'Before fetching from any source, our backend checks that source’s robots.txt file. If a publisher has restricted automated access, we skip that source entirely. This check runs automatically with every fetch cycle.',
+        } as Bi,
+      },
+      {
+        heading: { de: 'User-Agent-Kennung', en: 'User-Agent identification' } as Bi,
+        body: {
+          de: 'Unser RSS-Fetcher identifiziert sich bei jeder Anfrage mit folgender User-Agent-Zeichenfolge, damit Verlage unseren Crawler in ihren Zugriffsprotokollen erkennen können:',
+          en: 'Our RSS fetcher identifies itself with the following User-Agent string on every request, so publishers can identify our crawler in their access logs:',
+        } as Bi,
+      },
+      {
+        heading: { de: 'Verlagsbeschwerden und Entfernungswünsche', en: 'Publisher removal requests' } as Bi,
+        body: {
+          de: 'Wenn Sie Verlag sind und Ihre Inhalte aus alles-kurz entfernen lassen möchten, schreiben Sie an contact@alleskurz.com. Wir entfernen Ihre RSS-Quelle innerhalb von 5 Werktagen nach einer verifizierten Anfrage aus unserem System.',
+          en: 'If you are a publisher and wish to have your content removed from alles-kurz, please contact us at contact@alleskurz.com. We will remove your RSS source from our system within 5 business days of a verified request.',
+        } as Bi,
+      },
+      {
+        heading: { de: 'Rechtsgrundlage', en: 'Legal basis' } as Bi,
+        body: {
+          de: 'Unsere Nutzung öffentlich publizierter RSS-Inhalte ist mit dem Zweck vereinbar, zu dem RSS-Feeds bereitgestellt werden. KI-generierte Zusammenfassungen stellen nach geltendem deutschen Urheberrecht (UrhG) eine transformative Nutzung dar. Wir beanspruchen kein Urheberrecht an Originalinhalten der Verlage.',
+          en: 'Our use of publicly published RSS content is consistent with the purpose for which RSS feeds are made available. AI-generated summaries constitute transformative use under applicable German copyright law (UrhG). We do not claim copyright over original publisher content.',
+        } as Bi,
+      },
+      {
+        heading: { de: 'Kontakt', en: 'Contact' } as Bi,
+        body: {
+          de: 'Für Verlagsanfragen, Inhaltsstreitigkeiten oder Fragen zu dieser Richtlinie: contact@alleskurz.com. Antwortzeit: innerhalb von 5 Werktagen.',
+          en: 'For publisher enquiries, content disputes, or questions about this policy: contact@alleskurz.com. Response time: within 5 business days.',
+        } as Bi,
+      },
+    ],
+    userAgent: 'alles-kurz/1.0 (AI News Aggregator; contact@alleskurz.com)',
   },
 } as const;

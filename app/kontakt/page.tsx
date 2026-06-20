@@ -43,14 +43,14 @@ export default function KontaktPage() {
           >
             Bei Fragen wende dich an:{' '}
             <a
-              href="mailto:alleskurz.app@gmail.com"
+              href="mailto:contact@alleskurz.com"
               style={{
                 color: '#E53935',
                 textDecoration: 'none',
                 fontWeight: 600,
               }}
             >
-              alleskurz.app@gmail.com
+              contact@alleskurz.com
             </a>
           </p>
         </article>
