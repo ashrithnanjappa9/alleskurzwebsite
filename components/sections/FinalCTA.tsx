@@ -1,7 +1,7 @@
 'use client';
 
 import { useLang } from '../LangProvider';
-import { APP_STORE_URL, COPY } from '@/lib/copy';
+import { APP_STORE_URL, PLAY_STORE_URL, COPY } from '@/lib/copy';
 import StoreButton from '../StoreButton';
 
 export default function FinalCTA() {
@@ -86,6 +86,7 @@ export default function FinalCTA() {
             icon="play"
             lead={COPY.hero.cta2Lead[lang]}
             label="Google Play"
+            href={PLAY_STORE_URL}
             variant="outline"
             fullWidthMobile
           />

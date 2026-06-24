@@ -18,6 +18,9 @@ export const BRAND = {
 /** Live App Store URL for the iOS app. */
 export const APP_STORE_URL = 'https://apps.apple.com/us/app/alleskurz/id6779738506';
 
+/** Live Google Play URL for the Android app. */
+export const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.nanjax.alleskurz';
+
 export type CatKey =
   | 'politik'
   | 'wirtschaft'

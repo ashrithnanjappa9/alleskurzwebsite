@@ -1,7 +1,7 @@
 'use client';
 
 import { useLang } from '../LangProvider';
-import { APP_STORE_URL, COPY } from '@/lib/copy';
+import { APP_STORE_URL, PLAY_STORE_URL, COPY } from '@/lib/copy';
 import PhoneSwipeDeck from '../PhoneSwipeDeck';
 import StoreButton from '../StoreButton';
 
@@ -135,6 +135,7 @@ export default function Hero() {
             icon="play"
             lead={COPY.hero.cta2Lead[lang]}
             label="Google Play"
+            href={PLAY_STORE_URL}
             variant="outline"
             fullWidthMobile
           />
