@@ -1,6 +1,6 @@
 import type { CatKey, Lang } from './copy';
 
-export const NEWS_API = 'https://alles-kurz-backend-production.up.railway.app/api/news';
+export const NEWS_API = 'https://alles-kurz-production.up.railway.app/api/news';
 
 export const THIRTY_MINUTES = 30 * 60 * 1000;
 
