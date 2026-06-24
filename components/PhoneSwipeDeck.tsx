@@ -1,22 +1,80 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { useLang } from './LangProvider';
-import { CATS } from '@/lib/copy';
-import { SAMPLE_ARTICLES, sampleImageUrl, type SampleArticle } from '@/lib/sample-articles';
+import { CATS, type CatKey, type Lang } from '@/lib/copy';
+import { SAMPLE_ARTICLES, type SampleArticle } from '@/lib/sample-articles';
+import { fetchLatestNews, formatRelativeTime, type Article } from '@/lib/news';
 
 const WIDTH = 340;
 const HEIGHT = 700;
 const AUTOPLAY_MS = 4800;
 
+type Card = {
+  id: string;
+  imageUrl: string;
+  cat: CatKey | null;
+  source: string;
+  time: string;
+  title: string;
+  summary: string;
+};
+
+function cardFromSample(a: SampleArticle, lang: Lang): Card {
+  return {
+    id: a.id,
+    imageUrl: a.imageUrl,
+    cat: a.cat,
+    source: a.source,
+    time: a.time[lang],
+    title: a.title[lang],
+    summary: a.summary[lang],
+  };
+}
+
+function cardFromArticle(a: Article, lang: Lang, fallbackImage: string): Card {
+  return {
+    id: a.link || a.title,
+    imageUrl: a.imageUrl || fallbackImage,
+    cat: a.cat,
+    source: a.source,
+    time: formatRelativeTime(a.pubDate, lang),
+    title: a.title,
+    summary: a.summary,
+  };
+}
+
 export default function PhoneSwipeDeck() {
   const { lang } = useLang();
-  const list = SAMPLE_ARTICLES;
-  const total = list.length;
+  const [cards, setCards] = useState<Card[]>(() =>
+    SAMPLE_ARTICLES.map((a) => cardFromSample(a, lang)),
+  );
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
   const startX = useRef<number | null>(null);
+  const total = cards.length;
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchLatestNews('de')
+      .then((arts) => {
+        if (cancelled) return;
+        if (!arts || arts.length === 0) return;
+        const live = arts.slice(0, 4).map((a, i) =>
+          cardFromArticle(a, lang, SAMPLE_ARTICLES[i % SAMPLE_ARTICLES.length].imageUrl),
+        );
+        if (live.length > 0) {
+          setCards(live);
+          setIdx(0);
+        }
+      })
+      .catch(() => {
+        // keep sample fallback already in state
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang]);
 
   useEffect(() => {
     if (paused) return;
@@ -57,9 +115,9 @@ export default function PhoneSwipeDeck() {
             userSelect: 'none',
           }}
         >
-          {list.map((a, i) => (
+          {cards.map((c, i) => (
             <div
-              key={a.id}
+              key={c.id}
               style={{
                 position: 'absolute',
                 inset: 0,
@@ -74,12 +132,11 @@ export default function PhoneSwipeDeck() {
                 pointerEvents: i === idx ? 'auto' : 'none',
               }}
             >
-              <HeroSwipeCard article={a} lang={lang} />
+              <HeroSwipeCard card={c} lang={lang} />
             </div>
           ))}
         </div>
 
-        {/* Header chrome — search/bookmark like the real app */}
         <div
           style={{
             position: 'absolute',
@@ -98,7 +155,6 @@ export default function PhoneSwipeDeck() {
           <ChromePill>♡</ChromePill>
         </div>
 
-        {/* Page dots */}
         <div
           style={{
             position: 'absolute',
@@ -111,7 +167,7 @@ export default function PhoneSwipeDeck() {
             zIndex: 25,
           }}
         >
-          {list.map((_, i) => (
+          {cards.map((_, i) => (
             <button
               key={i}
               type="button"
@@ -132,7 +188,6 @@ export default function PhoneSwipeDeck() {
         </div>
       </PhoneFrame>
 
-      {/* Caption */}
       <div
         style={{
           position: 'absolute',
@@ -177,7 +232,6 @@ function PhoneFrame({ children }: { children: React.ReactNode }) {
           background: '#0D0D0D',
         }}
       >
-        {/* Status bar */}
         <div
           style={{
             position: 'absolute',
@@ -221,7 +275,6 @@ function PhoneFrame({ children }: { children: React.ReactNode }) {
             </span>
           </div>
         </div>
-        {/* Notch */}
         <div
           style={{
             position: 'absolute',
@@ -264,8 +317,11 @@ function ChromePill({ children }: { children: React.ReactNode }) {
   );
 }
 
-function HeroSwipeCard({ article, lang }: { article: SampleArticle; lang: 'de' | 'en' }) {
-  const cat = CATS[article.cat];
+function HeroSwipeCard({ card, lang }: { card: Card; lang: Lang }) {
+  const cat = card.cat ? CATS[card.cat] : null;
+  const accent = cat?.color ?? '#E53935';
+  const catLabel = cat ? cat[lang] : lang === 'de' ? 'News' : 'News';
+
   return (
     <div
       style={{
@@ -276,21 +332,20 @@ function HeroSwipeCard({ article, lang }: { article: SampleArticle; lang: 'de' |
         flexDirection: 'column',
       }}
     >
-      {/* Photo (38%) */}
       <div
         style={{
           position: 'relative',
           flexShrink: 0,
           height: '38%',
-          background: `linear-gradient(140deg, ${cat.color}, #1a1a1a 65%)`,
+          background: `linear-gradient(140deg, ${accent}, #1a1a1a 65%)`,
           overflow: 'hidden',
         }}
       >
-        <Image
-          src={sampleImageUrl(article.imageSeed)}
+        {/* Plain <img> sidesteps next/image domain config for arbitrary publisher CDNs. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={card.imageUrl}
           alt=""
-          width={800}
-          height={1200}
           style={{
             position: 'absolute',
             inset: 0,
@@ -299,8 +354,10 @@ function HeroSwipeCard({ article, lang }: { article: SampleArticle; lang: 'de' |
             objectFit: 'cover',
             filter: 'saturate(.85) contrast(1.05)',
           }}
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+          }}
         />
-        {/* Fade to body */}
         <div
           style={{
             position: 'absolute',
@@ -313,7 +370,6 @@ function HeroSwipeCard({ article, lang }: { article: SampleArticle; lang: 'de' |
         />
       </div>
 
-      {/* Body */}
       <div
         style={{
           flex: 1,
@@ -332,9 +388,9 @@ function HeroSwipeCard({ article, lang }: { article: SampleArticle; lang: 'de' |
             gap: 6,
             padding: '4px 9px 4px 7px',
             borderRadius: 999,
-            background: cat.color + '26',
-            border: `1px solid ${cat.color}`,
-            color: cat.color,
+            background: accent + '26',
+            border: `1px solid ${accent}`,
+            color: accent,
             fontSize: 9.5,
             fontWeight: 700,
             letterSpacing: '.06em',
@@ -346,10 +402,10 @@ function HeroSwipeCard({ article, lang }: { article: SampleArticle; lang: 'de' |
               width: 5,
               height: 5,
               borderRadius: '50%',
-              background: cat.color,
+              background: accent,
             }}
           />
-          {cat[lang]}
+          {catLabel}
         </div>
 
         <h2
@@ -363,7 +419,7 @@ function HeroSwipeCard({ article, lang }: { article: SampleArticle; lang: 'de' |
             textWrap: 'pretty',
           }}
         >
-          {article.title[lang]}
+          {card.title}
         </h2>
 
         <p
@@ -373,12 +429,15 @@ function HeroSwipeCard({ article, lang }: { article: SampleArticle; lang: 'de' |
             fontSize: 11.5,
             lineHeight: 1.55,
             textWrap: 'pretty',
+            display: '-webkit-box',
+            WebkitLineClamp: 6,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
           }}
         >
-          {article.summary[lang]}
+          {card.summary}
         </p>
 
-        {/* Source row */}
         <div
           style={{
             marginTop: 'auto',
@@ -394,18 +453,18 @@ function HeroSwipeCard({ article, lang }: { article: SampleArticle; lang: 'de' |
               width: 26,
               height: 26,
               borderRadius: '50%',
-              background: cat.color + '22',
-              border: `1px solid ${cat.color}55`,
+              background: accent + '22',
+              border: `1px solid ${accent}55`,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: cat.color,
+              color: accent,
               fontSize: 11,
               fontWeight: 800,
               flexShrink: 0,
             }}
           >
-            {article.source[0]?.toUpperCase()}
+            {card.source[0]?.toUpperCase() || '·'}
           </div>
           <div style={{ flex: 1, minWidth: 0, lineHeight: 1.15 }}>
             <div
@@ -430,18 +489,22 @@ function HeroSwipeCard({ article, lang }: { article: SampleArticle; lang: 'de' |
                 gap: 6,
               }}
             >
-              <span>{article.source}</span>
-              <span
-                style={{
-                  width: 2,
-                  height: 2,
-                  borderRadius: 1,
-                  background: 'rgba(255,255,255,.4)',
-                }}
-              />
-              <span style={{ fontWeight: 500, color: 'rgba(255,255,255,.55)' }}>
-                {article.time[lang]}
-              </span>
+              <span>{card.source}</span>
+              {card.time && (
+                <>
+                  <span
+                    style={{
+                      width: 2,
+                      height: 2,
+                      borderRadius: 1,
+                      background: 'rgba(255,255,255,.4)',
+                    }}
+                  />
+                  <span style={{ fontWeight: 500, color: 'rgba(255,255,255,.55)' }}>
+                    {card.time}
+                  </span>
+                </>
+              )}
             </div>
           </div>
         </div>

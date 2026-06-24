@@ -4,6 +4,7 @@ export type SampleArticle = {
   id: string;
   cat: CatKey;
   imageSeed: string;
+  imageUrl: string;
   source: string;
   time: { de: string; en: string };
   kicker: { de: string; en: string };
@@ -16,6 +17,7 @@ export const SAMPLE_ARTICLES: SampleArticle[] = [
     id: 'klima',
     cat: 'politik',
     imageSeed: 'klima',
+    imageUrl: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800',
     source: 'dpa',
     time: { de: 'vor 12 Min.', en: '12 min ago' },
     kicker: { de: 'Klimagesetz', en: 'Climate Bill' },
@@ -32,6 +34,7 @@ export const SAMPLE_ARTICLES: SampleArticle[] = [
     id: 'dax',
     cat: 'wirtschaft',
     imageSeed: 'dax',
+    imageUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800',
     source: 'Handelsblatt',
     time: { de: 'vor 1 Std.', en: '1 hr ago' },
     kicker: { de: 'Markets', en: 'Markets' },
@@ -48,6 +51,7 @@ export const SAMPLE_ARTICLES: SampleArticle[] = [
     id: 'sport',
     cat: 'sport',
     imageSeed: 'sport',
+    imageUrl: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800',
     source: 'kicker',
     time: { de: 'vor 2 Std.', en: '2 hrs ago' },
     kicker: { de: 'Bundesliga', en: 'Bundesliga' },
@@ -64,6 +68,7 @@ export const SAMPLE_ARTICLES: SampleArticle[] = [
     id: 'tech',
     cat: 'tech',
     imageSeed: 'tech',
+    imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800',
     source: 'Politico',
     time: { de: 'vor 3 Std.', en: '3 hrs ago' },
     kicker: { de: 'EU · KI-Verordnung', en: 'EU · AI Act' },
