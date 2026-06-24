@@ -11,7 +11,11 @@ export default function Hero() {
 
   return (
     <header
-      style={{ position: 'relative', overflow: 'hidden', padding: '86px 0 96px' }}
+      style={{
+        position: 'relative',
+        overflowX: 'clip',
+        padding: '86px 0 120px',
+      }}
     >
       <div
         aria-hidden

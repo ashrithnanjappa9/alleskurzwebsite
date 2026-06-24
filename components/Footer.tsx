@@ -22,26 +22,37 @@ export default function Footer() {
               <Image
                 src="/ak-icon.png"
                 alt="alleskurz"
-                width={34}
-                height={34}
-                style={{ borderRadius: 9 }}
+                width={40}
+                height={40}
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 10,
+                  flexShrink: 0,
+                  display: 'block',
+                  objectFit: 'cover',
+                }}
               />
               <span style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-.02em' }}>
                 alles<span style={{ color: 'var(--ak-red)' }}>kurz</span>
               </span>
             </Link>
-            <p
-              style={{
-                marginTop: 18,
+            {(() => {
+              const parts = splitLastSentence(COPY.footer.blurb[lang]);
+              const pStyle = {
                 fontSize: 14,
                 color: 'var(--ak-text-mute)',
                 maxWidth: 280,
                 lineHeight: 1.6,
                 fontWeight: 500,
-              }}
-            >
-              {COPY.footer.blurb[lang]}
-            </p>
+              } as const;
+              return (
+                <>
+                  <p style={{ ...pStyle, marginTop: 18 }}>{parts[0]}</p>
+                  {parts[1] && <p style={{ ...pStyle, marginTop: 6 }}>{parts[1]}</p>}
+                </>
+              );
+            })()}
           </div>
 
           {COPY.footer.columns.map((col) => (
@@ -109,3 +120,13 @@ const socialLinkStyle = {
   fontWeight: 600,
   transition: 'color .18s',
 } as const;
+
+function splitLastSentence(s: string): [string, string?] {
+  const trimmed = s.trim().replace(/\s+$/, '');
+  const end = trimmed.endsWith('.') ? trimmed.slice(0, -1) : trimmed;
+  const idx = end.lastIndexOf('. ');
+  if (idx === -1) return [trimmed];
+  const head = trimmed.slice(0, idx + 1);
+  const tail = trimmed.slice(idx + 2);
+  return [head, tail];
+}

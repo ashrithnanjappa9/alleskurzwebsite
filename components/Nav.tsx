@@ -55,9 +55,16 @@ export default function Nav() {
           <Image
             src="/ak-icon.png"
             alt="alleskurz"
-            width={34}
-            height={34}
-            style={{ borderRadius: 9 }}
+            width={40}
+            height={40}
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 10,
+              flexShrink: 0,
+              display: 'block',
+              objectFit: 'cover',
+            }}
             priority
           />
           <span style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-.02em' }}>
