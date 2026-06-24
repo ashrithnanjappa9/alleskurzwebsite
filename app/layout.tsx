@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Schibsted_Grotesk } from 'next/font/google';
 import { LangProvider } from '@/components/LangProvider';
 import './globals.css';
 
-const inter = Inter({
+const schibsted = Schibsted_Grotesk({
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
   display: 'swap',
   variable: '--ak-font-sans',
 });
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={inter.variable}>
+    <html lang="de" className={schibsted.variable}>
       <body>
         <LangProvider>
           {children}

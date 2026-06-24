@@ -2,94 +2,113 @@
 
 import { useLang } from '../LangProvider';
 import { COPY } from '@/lib/copy';
-import SectionHeader from '../SectionHeader';
 
 export default function HowItWorks() {
   const { lang } = useLang();
   return (
     <section
       id="how"
-      className="px-5 py-20 md:px-[60px] md:py-[120px]"
+      className="py-[76px] md:py-[104px]"
     >
-      <SectionHeader
-        eyebrow={COPY.how.eyebrow[lang]}
-        title={COPY.how.title[lang]}
-        sub={COPY.how.sub[lang]}
-      />
-      <div className="mt-10 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-        {COPY.how.steps.map((s) => (
-          <HowCard key={s.n} n={s.n} title={s.title[lang]} body={s.body[lang]} />
-        ))}
+      <div className="mx-auto px-6 md:px-8" style={{ maxWidth: 1240 }}>
+        <div style={{ maxWidth: 720 }}>
+          <div
+            style={{
+              fontSize: 13,
+              fontWeight: 700,
+              letterSpacing: '.18em',
+              textTransform: 'uppercase',
+              color: 'var(--ak-red)',
+            }}
+          >
+            {COPY.how.eyebrow[lang]}
+          </div>
+          <h2
+            style={{
+              margin: '16px 0 0',
+              fontSize: 'clamp(34px, 4.4vw, 56px)',
+              fontWeight: 800,
+              letterSpacing: '-.03em',
+              lineHeight: 1.02,
+            }}
+          >
+            {COPY.how.title[lang]}
+          </h2>
+          <p
+            style={{
+              margin: '18px 0 0',
+              fontSize: 17,
+              color: 'var(--ak-text-mute)',
+              maxWidth: 560,
+              lineHeight: 1.55,
+              fontWeight: 500,
+            }}
+          >
+            {COPY.how.sub[lang]}
+          </p>
+        </div>
+
+        <div
+          className="mt-16 grid grid-cols-1 md:grid-cols-3"
+          style={{ borderTop: '1px solid var(--ak-hair)' }}
+        >
+          {COPY.how.steps.map((s, i) => (
+            <div
+              key={s.n}
+              className={[
+                'py-9',
+                i === 0 ? 'md:pr-8' : 'md:px-8',
+                'border-t md:border-t-0',
+                'md:border-l border-ak-hair',
+                i === 0 ? 'md:border-l-0 border-t-0' : '',
+              ].join(' ')}
+            >
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  fontSize: 13,
+                  fontWeight: 800,
+                  color: 'var(--ak-red)',
+                  fontVariantNumeric: 'tabular-nums',
+                  letterSpacing: '.04em',
+                }}
+              >
+                {s.n}
+              </span>
+              <div
+                style={{
+                  width: 28,
+                  height: 3,
+                  background: 'var(--ak-red)',
+                  borderRadius: 2,
+                  margin: '18px 0 20px',
+                }}
+              />
+              <h3
+                style={{
+                  fontSize: 22,
+                  fontWeight: 700,
+                  letterSpacing: '-.02em',
+                }}
+              >
+                {s.title[lang]}
+              </h3>
+              <p
+                style={{
+                  marginTop: 12,
+                  fontSize: 14.5,
+                  color: 'var(--ak-text-mute)',
+                  lineHeight: 1.55,
+                  fontWeight: 500,
+                }}
+              >
+                {s.body[lang]}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
-  );
-}
-
-function HowCard({ n, title, body }: { n: string; title: string; body: string }) {
-  return (
-    <div
-      className="relative px-6 py-8 md:px-[30px] md:py-[36px] md:pb-10 min-h-[220px] md:min-h-[320px]"
-      style={{
-        background: 'var(--ak-surface)',
-        border: '1px solid var(--ak-border)',
-        borderRadius: 20,
-        overflow: 'hidden',
-      }}
-    >
-      <div
-        aria-hidden
-        className="text-[140px] md:text-[220px]"
-        style={{
-          position: 'absolute',
-          top: -20,
-          right: -10,
-          fontWeight: 800,
-          lineHeight: 1,
-          color: 'var(--ak-howcard-numbg)',
-          letterSpacing: '-.06em',
-          fontVariantNumeric: 'tabular-nums',
-        }}
-      >
-        {n}
-      </div>
-      <div
-        style={{
-          display: 'inline-flex',
-          padding: '6px 12px',
-          borderRadius: 999,
-          background: 'rgba(229,57,53,.13)',
-          color: '#E53935',
-          fontSize: 11,
-          fontWeight: 800,
-          letterSpacing: '.16em',
-        }}
-      >
-        {n}
-      </div>
-      <h3
-        className="text-[22px] md:text-[26px] mt-5 md:mt-6 mb-3"
-        style={{
-          position: 'relative',
-          fontWeight: 800,
-          letterSpacing: '-.02em',
-          lineHeight: 1.15,
-          color: 'var(--ak-text)',
-        }}
-      >
-        {title}
-      </h3>
-      <p
-        className="text-[14px] md:text-[14.5px]"
-        style={{
-          position: 'relative',
-          margin: 0,
-          color: 'var(--ak-text-mute)',
-          lineHeight: 1.6,
-          textWrap: 'pretty',
-        }}
-      >
-        {body}
-      </p>
-    </div>
   );
 }

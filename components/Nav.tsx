@@ -1,17 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { useLang } from './LangProvider';
 import { COPY, type Lang } from '@/lib/copy';
-import LogoMark from './LogoMark';
 
 export default function Nav() {
   const { lang, setLang } = useLang();
   const [open, setOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
 
-  // Close the mobile menu on outside click or Escape.
   useEffect(() => {
     if (!open) return;
     const onClick = (e: MouseEvent) => {
@@ -30,107 +29,117 @@ export default function Nav() {
 
   const navItems: Array<{ label: string; href: string }> = [
     { label: COPY.nav.how[lang],      href: '/#how' },
-    { label: COPY.nav.stories[lang],  href: '/#stories' },
-    { label: COPY.nav.polls[lang],    href: '/#polls' },
     { label: COPY.nav.business[lang], href: '/business' },
   ];
 
   return (
     <nav
       ref={navRef}
-      className="sticky top-0 z-50 px-5 py-4 md:px-[60px] md:py-[20px]"
+      className="sticky top-0 z-50"
       style={{
         background: 'var(--ak-nav-bg)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: '1px solid var(--ak-border)',
+        backdropFilter: 'saturate(160%) blur(16px)',
+        WebkitBackdropFilter: 'saturate(160%) blur(16px)',
+        borderBottom: '1px solid var(--ak-hair-soft)',
       }}
     >
-      <div className="flex items-center justify-between gap-3">
-        {/* Brand */}
+      <div
+        className="mx-auto flex items-center gap-5 px-6 md:px-8"
+        style={{ maxWidth: 1240, height: 72 }}
+      >
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: 'inherit' }}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 11 }}
         >
-          <LogoMark size={40} />
-          <span className="text-[15px] md:text-[16px]" style={{ fontWeight: 800, letterSpacing: '-.02em' }}>
-            alles<span style={{ color: '#E53935' }}>kurz</span>
+          <Image
+            src="/ak-icon.png"
+            alt="alleskurz"
+            width={34}
+            height={34}
+            style={{ borderRadius: 9 }}
+            priority
+          />
+          <span style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-.02em' }}>
+            alles<span style={{ color: 'var(--ak-red)' }}>kurz</span>
           </span>
         </Link>
 
-        {/* Center: text links (desktop only) */}
-        <div className="hidden md:flex items-center gap-9">
+        <div style={{ flex: 1 }} />
+
+        <div className="hidden md:flex items-center gap-8">
           {navItems.map((it) => (
             <Link
               key={it.label}
               href={it.href}
               style={{
                 color: 'var(--ak-text-mute)',
-                textDecoration: 'none',
-                fontSize: 14,
-                fontWeight: 500,
+                fontSize: 14.5,
+                fontWeight: 600,
+                letterSpacing: '-.01em',
+                transition: 'color .2s',
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ak-text)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ak-text-mute)')}
             >
               {it.label}
             </Link>
           ))}
         </div>
 
-        {/* Right: DE/EN + Holen (desktop) | DE/EN + hamburger (mobile) */}
-        <div className="flex items-center gap-3 md:gap-4">
-          <InlineLangPill lang={lang} setLang={setLang} />
+        <LangPill lang={lang} setLang={setLang} />
 
-          {/* Desktop Holen button */}
-          <button
-            type="button"
-            className="hidden md:inline-flex"
-            style={{
-              background: '#E53935',
-              color: '#fff',
-              border: 0,
-              borderRadius: 10,
-              padding: '10px 18px',
-              fontSize: 13,
-              fontWeight: 700,
-              cursor: 'pointer',
-              letterSpacing: '.01em',
-            }}
-          >
-            {COPY.nav.download[lang]} ↓
-          </button>
+        <Link
+          href="/#download"
+          className="hidden sm:inline-flex"
+          style={{
+            background: 'var(--ak-red)',
+            color: '#fff',
+            fontWeight: 700,
+            fontSize: 14.5,
+            letterSpacing: '-.01em',
+            padding: '11px 20px',
+            borderRadius: 999,
+            alignItems: 'center',
+            gap: 8,
+            whiteSpace: 'nowrap',
+            transition: 'background .18s, transform .12s',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--ak-red-press)')}
+          onMouseLeave={(e) => (e.currentTarget.style.background = 'var(--ak-red)')}
+        >
+          {COPY.nav.download[lang]}
+        </Link>
 
-          {/* Mobile hamburger */}
-          <button
-            type="button"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            onClick={() => setOpen((o) => !o)}
-            className="md:hidden inline-flex items-center justify-center"
-            style={{
-              width: 38,
-              height: 38,
-              borderRadius: 10,
-              background: 'transparent',
-              border: '1px solid var(--ak-border-strong)',
-              color: 'var(--ak-text)',
-              cursor: 'pointer',
-              padding: 0,
-            }}
-          >
-            {open ? <CloseIcon /> : <HamburgerIcon />}
-          </button>
-        </div>
+        <button
+          type="button"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          onClick={() => setOpen((o) => !o)}
+          className="md:hidden"
+          style={{
+            width: 38,
+            height: 38,
+            borderRadius: 999,
+            border: '1px solid var(--ak-hair)',
+            background: 'var(--ak-surface)',
+            color: 'var(--ak-text-mute)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {open ? <CloseIcon /> : <HamburgerIcon />}
+        </button>
       </div>
 
-      {/* Mobile dropdown */}
       {open && (
         <div
           className="md:hidden absolute left-0 right-0 top-full"
           style={{
             background: 'var(--ak-bg-soft)',
-            borderBottom: '1px solid var(--ak-border-strong)',
-            padding: '12px 20px 20px',
+            borderBottom: '1px solid var(--ak-hair)',
+            padding: '12px 24px 22px',
             display: 'flex',
             flexDirection: 'column',
             gap: 4,
@@ -143,82 +152,72 @@ export default function Nav() {
               onClick={() => setOpen(false)}
               style={{
                 color: 'var(--ak-text)',
-                textDecoration: 'none',
                 fontSize: 16,
                 fontWeight: 600,
                 padding: '14px 4px',
-                borderBottom: '1px solid var(--ak-border)',
+                borderBottom: '1px solid var(--ak-hair-soft)',
               }}
             >
               {it.label}
             </Link>
           ))}
-          <button
-            type="button"
+          <Link
+            href="/#download"
             onClick={() => setOpen(false)}
             style={{
               marginTop: 16,
-              background: '#E53935',
+              background: 'var(--ak-red)',
               color: '#fff',
-              border: 0,
-              borderRadius: 12,
+              borderRadius: 999,
               padding: '14px 18px',
               fontSize: 15,
               fontWeight: 700,
-              cursor: 'pointer',
-              letterSpacing: '.01em',
-              width: '100%',
+              textAlign: 'center',
             }}
           >
-            {COPY.nav.download[lang]} ↓
-          </button>
+            {COPY.nav.download[lang]}
+          </Link>
         </div>
       )}
     </nav>
   );
 }
 
-function InlineLangPill({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
+function LangPill({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
   return (
     <div
+      role="group"
+      aria-label="Language"
       style={{
-        background: 'rgba(20,20,20,.92)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        border: '1px solid rgba(255,255,255,.1)',
+        display: 'inline-flex',
+        alignItems: 'center',
+        background: 'var(--ak-surface)',
+        border: '1px solid var(--ak-hair)',
         borderRadius: 999,
-        padding: 2,
-        display: 'flex',
-        gap: 1,
+        padding: 3,
+        gap: 2,
       }}
     >
       {(['de', 'en'] as const).map((l) => {
-        const active = lang === l;
+        const on = lang === l;
         return (
           <button
             key={l}
             type="button"
             onClick={() => setLang(l)}
-            aria-pressed={active}
+            aria-pressed={on}
             style={{
-              background: active ? '#E53935' : 'transparent',
-              color: active ? '#fff' : 'rgba(255,255,255,.65)',
+              background: on ? 'var(--ak-text)' : 'transparent',
+              color: on ? 'var(--ak-bg)' : 'var(--ak-text-faint)',
               border: 0,
-              padding: '4px 10px',
+              padding: '6px 12px',
               borderRadius: 999,
               fontFamily: 'inherit',
-              fontSize: 11,
+              fontSize: 12.5,
               fontWeight: 700,
-              letterSpacing: '.12em',
-              textTransform: 'uppercase',
+              letterSpacing: '.03em',
               cursor: 'pointer',
-              transition: 'all .15s ease',
-            }}
-            onMouseEnter={(e) => {
-              if (!active) e.currentTarget.style.color = '#fff';
-            }}
-            onMouseLeave={(e) => {
-              if (!active) e.currentTarget.style.color = 'rgba(255,255,255,.65)';
+              transition: 'all .18s',
             }}
           >
             {l.toUpperCase()}

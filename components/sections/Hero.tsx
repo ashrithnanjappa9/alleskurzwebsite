@@ -1,182 +1,177 @@
 'use client';
 
+import Image from 'next/image';
 import { useLang } from '../LangProvider';
 import { APP_STORE_URL, PLAY_STORE_URL, COPY } from '@/lib/copy';
-import PhoneSwipeDeck from '../PhoneSwipeDeck';
 import StoreButton from '../StoreButton';
 
 export default function Hero() {
   const { lang } = useLang();
+  const shot = lang === 'en' ? '/shots/en-feed-zverev.png' : '/shots/de-feed-finanzamt.png';
+
   return (
-    <section
-      className="relative px-5 pt-12 pb-16 md:px-[60px] md:pt-24 md:pb-20 grid grid-cols-1 md:grid-cols-[1.05fr_.95fr] gap-12 md:gap-[60px] items-center overflow-hidden"
+    <header
+      style={{ position: 'relative', overflow: 'hidden', padding: '86px 0 96px' }}
     >
-      {/* Background flares — smaller on mobile so they don't push layout width */}
       <div
         aria-hidden
-        className="hidden md:block"
         style={{
           position: 'absolute',
-          top: -120,
-          right: -160,
-          width: 700,
-          height: 700,
-          borderRadius: '50%',
-          background:
-            'radial-gradient(circle, var(--ak-flare-big) 0%, var(--ak-flare-edge) 30%, transparent 60%)',
+          top: '-10%',
+          right: '-5%',
+          width: 760,
+          height: 760,
+          background: 'radial-gradient(circle, var(--ak-red-tint), transparent 62%)',
           pointerEvents: 'none',
-          zIndex: 0,
+          filter: 'blur(8px)',
         }}
       />
       <div
-        aria-hidden
-        className="hidden md:block"
-        style={{
-          position: 'absolute',
-          bottom: -200,
-          left: -200,
-          width: 600,
-          height: 600,
-          borderRadius: '50%',
-          background:
-            'radial-gradient(circle, var(--ak-flare-small) 0%, transparent 60%)',
-          pointerEvents: 'none',
-          zIndex: 0,
-        }}
-      />
-      {/* Compact mobile-only flare */}
-      <div
-        aria-hidden
-        className="md:hidden"
-        style={{
-          position: 'absolute',
-          top: -50,
-          right: -80,
-          width: 280,
-          height: 280,
-          borderRadius: '50%',
-          background:
-            'radial-gradient(circle, var(--ak-flare-big) 0%, var(--ak-flare-edge) 30%, transparent 60%)',
-          pointerEvents: 'none',
-          zIndex: 0,
-        }}
-      />
+        className="mx-auto px-6 md:px-8"
+        style={{ maxWidth: 1240, position: 'relative' }}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-[1.05fr_.95fr] items-center gap-12 md:gap-14">
+          <div>
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 9,
+                background: 'var(--ak-pill-bg)',
+                color: 'var(--ak-red)',
+                border: '1px solid rgba(229,57,53,.32)',
+                borderRadius: 999,
+                padding: '7px 14px',
+                fontSize: 12,
+                fontWeight: 700,
+                letterSpacing: '.08em',
+                textTransform: 'uppercase',
+              }}
+            >
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--ak-red)' }} />
+              {COPY.hero.eyebrow[lang]}
+            </span>
 
-      {/* Left: copy */}
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        <div
-          className="text-[10px] md:text-[11px]"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 10,
-            padding: '6px 12px 6px 8px',
-            borderRadius: 999,
-            background: 'var(--ak-pill-bg)',
-            border: '1px solid rgba(229,57,53,.33)',
-            fontWeight: 700,
-            color: '#E53935',
-            letterSpacing: '.14em',
-            textTransform: 'uppercase',
-          }}
-        >
-          <span
-            style={{
-              width: 6,
-              height: 6,
-              borderRadius: '50%',
-              background: '#E53935',
-              boxShadow: '0 0 12px #E53935',
-            }}
-          />
-          {COPY.hero.eyebrow[lang]}
-        </div>
+            <h1
+              style={{
+                margin: '24px 0 0',
+                fontSize: 'clamp(46px, 6.4vw, 86px)',
+                fontWeight: 800,
+                lineHeight: 0.98,
+                letterSpacing: '-.035em',
+              }}
+            >
+              <span style={{ display: 'block' }}>{COPY.hero.titleA[lang]}</span>
+              <span style={{ display: 'block', color: 'var(--ak-red)' }}>{COPY.hero.titleB[lang]}</span>
+            </h1>
 
-        <h1
-          className="text-[40px] sm:text-[52px] md:text-[80px] mt-8 md:mt-10"
-          style={{
-            margin: 0,
-            marginTop: undefined,
-            fontWeight: 800,
-            lineHeight: 0.98,
-            letterSpacing: '-.035em',
-          }}
-        >
-          <span style={{ display: 'block' }}>{COPY.hero.titleA[lang]}</span>
-          <span style={{ display: 'block', color: '#E53935' }}>
-            {COPY.hero.titleB[lang]}
-          </span>
-        </h1>
+            <p
+              style={{
+                margin: '26px 0 0',
+                fontSize: 'clamp(16px, 1.5vw, 19px)',
+                color: 'var(--ak-text-mute)',
+                maxWidth: 520,
+                lineHeight: 1.55,
+                fontWeight: 500,
+              }}
+            >
+              {COPY.hero.sub[lang]}
+            </p>
 
-        <p
-          className="text-[15px] md:text-[18px] mt-7 md:mt-8"
-          style={{
-            margin: 0,
-            marginTop: undefined,
-            lineHeight: 1.55,
-            color: 'var(--ak-text-mute)',
-            maxWidth: 520,
-            textWrap: 'pretty',
-          }}
-        >
-          {COPY.hero.sub[lang]}
-        </p>
+            <div style={{ marginTop: 38, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+              <StoreButton
+                icon="apple"
+                lead={COPY.hero.cta1Lead[lang]}
+                label="App Store"
+                href={APP_STORE_URL}
+              />
+              <StoreButton
+                icon="play"
+                lead={COPY.hero.cta2Lead[lang]}
+                label="Google Play"
+                href={PLAY_STORE_URL}
+              />
+            </div>
 
-        {/* CTAs */}
-        <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
-          <StoreButton
-            icon="apple"
-            lead={COPY.hero.cta1Lead[lang]}
-            label="App Store"
-            href={APP_STORE_URL}
-            fullWidthMobile
-          />
-          <StoreButton
-            icon="play"
-            lead={COPY.hero.cta2Lead[lang]}
-            label="Google Play"
-            href={PLAY_STORE_URL}
-            variant="outline"
-            fullWidthMobile
-          />
-        </div>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 14,
+                marginTop: 26,
+              }}
+            >
+              <div style={{ display: 'flex' }}>
+                {['#E0654E', '#4F9E6A', '#3D7BD9', '#9B59B6'].map((bg, i) => (
+                  <span
+                    key={bg}
+                    style={{
+                      width: 30,
+                      height: 30,
+                      borderRadius: '50%',
+                      background: bg,
+                      border: '2px solid var(--ak-bg)',
+                      marginLeft: i ? -8 : 0,
+                      display: 'inline-block',
+                    }}
+                  />
+                ))}
+              </div>
+              <p style={{ fontSize: 13.5, color: 'var(--ak-text-mute)', fontWeight: 500, margin: 0 }}>
+                {COPY.hero.trust[lang]}
+              </p>
+            </div>
+          </div>
 
-        {/* Trust line — CHANGE 3 applied */}
-        <div
-          className="text-[12px] md:text-[13px] mt-7 md:mt-8"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 14,
-            color: 'var(--ak-text-dim)',
-          }}
-        >
-          <div style={{ display: 'flex', flexShrink: 0 }}>
-            {[0, 1, 2, 3].map((i) => (
+          <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
+            <div
+              className="ak-phone-float"
+              style={{
+                position: 'relative',
+                width: 318,
+                borderRadius: 46,
+                padding: 9,
+                background: 'linear-gradient(155deg, #2a2a2e, #131315 60%, #08080a)',
+                boxShadow: 'var(--ak-shadow), 0 0 0 1px rgba(255,255,255,.06) inset',
+              }}
+            >
               <div
-                key={i}
+                aria-hidden
                 style={{
-                  width: 28,
-                  height: 28,
-                  borderRadius: '50%',
-                  background: `linear-gradient(135deg, hsl(${i * 87},60%,55%), hsl(${i * 87 + 30},60%,40%))`,
-                  border: '2px solid var(--ak-avatar-ring)',
-                  marginLeft: i ? -8 : 0,
+                  position: 'absolute',
+                  top: 12,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: 92,
+                  height: 26,
+                  background: '#000',
+                  borderRadius: 999,
+                  zIndex: 5,
                 }}
               />
-            ))}
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  borderRadius: 38,
+                  overflow: 'hidden',
+                  background: '#000',
+                  aspectRatio: '946 / 2048',
+                }}
+              >
+                <Image
+                  src={shot}
+                  alt="alleskurz App"
+                  fill
+                  sizes="318px"
+                  style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                  priority
+                />
+              </div>
+            </div>
           </div>
-          <span>{COPY.hero.trust[lang]}</span>
         </div>
       </div>
-
-      {/* Right: phone — scaled on mobile to fit narrow screens */}
-      <div
-        className="flex justify-center scale-[.78] origin-top md:scale-100 -mb-32 md:mb-0"
-        style={{ position: 'relative', zIndex: 1 }}
-      >
-        <PhoneSwipeDeck />
-      </div>
-    </section>
+    </header>
   );
 }

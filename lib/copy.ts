@@ -147,6 +147,10 @@ export const COPY = {
       de: 'Kostenlos. Kein Datenmissbrauch. Kein Lärm.',
       en: 'Free. No data abuse. No noise.',
     } as Bi,
+    tag: {
+      de: 'Weniger scrollen. Mehr wissen.',
+      en: 'Scroll less. Know more.',
+    } as Bi,
   },
   footer: {
     blurb: {

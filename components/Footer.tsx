@@ -1,105 +1,111 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLang } from './LangProvider';
 import { COPY } from '@/lib/copy';
-import LogoMark from './LogoMark';
 
 export default function Footer() {
   const { lang } = useLang();
   return (
     <footer
-      className="px-5 pt-14 pb-10 md:px-[60px] md:pt-[60px] md:pb-10"
       style={{
-        borderTop: '1px solid var(--ak-border-strong)',
-        background: 'var(--ak-bg-deep)',
+        background: 'var(--ak-bg)',
+        borderTop: '1px solid var(--ak-hair)',
+        padding: '76px 0 40px',
       }}
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.6fr_1fr_1fr_1fr] gap-8 md:gap-[60px] mb-10 md:mb-12">
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <LogoMark size={36} />
-            <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-.02em' }}>
-              alles<span style={{ color: '#E53935' }}>kurz</span>
-            </div>
+      <div className="mx-auto px-6 md:px-8" style={{ maxWidth: 1240 }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 md:gap-[40px]">
+          <div>
+            <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 11 }}>
+              <Image
+                src="/ak-icon.png"
+                alt="alleskurz"
+                width={34}
+                height={34}
+                style={{ borderRadius: 9 }}
+              />
+              <span style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-.02em' }}>
+                alles<span style={{ color: 'var(--ak-red)' }}>kurz</span>
+              </span>
+            </Link>
+            <p
+              style={{
+                marginTop: 18,
+                fontSize: 14,
+                color: 'var(--ak-text-mute)',
+                maxWidth: 280,
+                lineHeight: 1.6,
+                fontWeight: 500,
+              }}
+            >
+              {COPY.footer.blurb[lang]}
+            </p>
           </div>
-          <p
-            style={{
-              margin: '16px 0 0',
-              maxWidth: 320,
-              fontSize: 14,
-              color: 'var(--ak-text-dim)',
-              lineHeight: 1.6,
-            }}
-          >
-            {COPY.footer.blurb[lang]}
-          </p>
-        </div>
 
-        {COPY.footer.columns.map((col) => (
-          <div key={col.heading.de}>
-            <div
-              style={{
-                fontSize: 12,
-                fontWeight: 800,
-                letterSpacing: '.16em',
-                color: 'var(--ak-text-dim)',
-                textTransform: 'uppercase',
-                marginBottom: 16,
-              }}
-            >
-              {col.heading[lang]}
-            </div>
-            <ul
-              style={{
-                margin: 0,
-                padding: 0,
-                listStyle: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 10,
-              }}
-            >
+          {COPY.footer.columns.map((col) => (
+            <div key={col.heading.de}>
+              <h4
+                style={{
+                  fontSize: 12,
+                  fontWeight: 700,
+                  letterSpacing: '.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--ak-text-faint)',
+                  marginBottom: 18,
+                }}
+              >
+                {col.heading[lang]}
+              </h4>
               {col.items.map((it) => {
-                const linkStyle = {
+                const style = {
+                  display: 'block',
+                  fontSize: 14.5,
                   color: 'var(--ak-text-mute)',
-                  textDecoration: 'none',
-                  fontSize: 14,
+                  marginBottom: 12,
+                  fontWeight: 500,
+                  transition: 'color .18s',
                 } as const;
-                return (
-                  <li key={it.label.de}>
-                    {it.href ? (
-                      <Link href={it.href} style={linkStyle}>
-                        {it.label[lang]}
-                      </Link>
-                    ) : (
-                      <a href="#" style={linkStyle}>
-                        {it.label[lang]}
-                      </a>
-                    )}
-                  </li>
+                return it.href ? (
+                  <Link key={it.label.de} href={it.href} style={style}>
+                    {it.label[lang]}
+                  </Link>
+                ) : (
+                  <a key={it.label.de} href="#" style={style}>
+                    {it.label[lang]}
+                  </a>
                 );
               })}
-            </ul>
-          </div>
-        ))}
-      </div>
+            </div>
+          ))}
+        </div>
 
-      <div
-        className="pt-6 flex flex-col gap-3 md:flex-row md:justify-between items-start md:items-center"
-        style={{
-          borderTop: '1px solid var(--ak-border)',
-          fontSize: 12,
-          color: 'var(--ak-text-faint)',
-        }}
-      >
-        <span>{COPY.footer.rights[lang]}</span>
-        <span style={{ display: 'flex', gap: 18 }}>
-          <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>𝕏</a>
-          <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>Instagram</a>
-          <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn</a>
-        </span>
+        <div
+          className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+          style={{
+            marginTop: 60,
+            paddingTop: 26,
+            borderTop: '1px solid var(--ak-hair)',
+          }}
+        >
+          <p style={{ fontSize: 13, color: 'var(--ak-text-faint)', fontWeight: 500 }}>
+            {COPY.footer.rights[lang]}
+          </p>
+          <div style={{ display: 'flex', gap: 22 }}>
+            <a href="#" aria-label="X" style={socialLinkStyle}>X</a>
+            <a href="#" aria-label="Instagram" style={socialLinkStyle}>Instagram</a>
+            <a href="#" aria-label="LinkedIn" style={socialLinkStyle}>LinkedIn</a>
+          </div>
+        </div>
       </div>
     </footer>
   );
 }
+
+const socialLinkStyle = {
+  fontSize: 13,
+  color: 'var(--ak-text-mute)',
+  fontWeight: 600,
+  transition: 'color .18s',
+} as const;

@@ -7,51 +7,60 @@ import { COPY } from '@/lib/copy';
 export default function Marquee() {
   const { lang } = useLang();
   const phrases = COPY.marquee[lang];
-  const triple = [...phrases, ...phrases, ...phrases];
+  const loop = [...phrases, ...phrases, ...phrases, ...phrases];
+
+  const colorFor = (i: number) => {
+    const mod = i % 3;
+    if (mod === 0) return 'var(--ak-text)';
+    if (mod === 1) return 'var(--ak-red)';
+    return 'var(--ak-text-faint)';
+  };
+
   return (
-    <div
-      className="py-12 md:py-[60px]"
+    <section
+      aria-hidden
       style={{
+        padding: '46px 0',
         overflow: 'hidden',
-        borderBottom: '1px solid var(--ak-border)',
+        borderBottom: '1px solid var(--ak-hair)',
       }}
     >
       <div
-        className="gap-10 md:gap-[60px]"
         style={{
-          display: 'flex',
+          display: 'inline-flex',
           alignItems: 'center',
           whiteSpace: 'nowrap',
-          flexWrap: 'nowrap',
-          animation: 'akMarquee 30s linear infinite',
-          width: 'max-content',
+          animation: 'akMarquee 28s linear infinite',
+          willChange: 'transform',
         }}
       >
-        {triple.map((p, i) => (
+        {loop.map((phrase, i) => (
           <Fragment key={i}>
             <span
-              className="text-[36px] md:text-[64px]"
               style={{
+                fontSize: 'clamp(40px, 5.6vw, 76px)',
                 fontWeight: 800,
-                letterSpacing: '-.03em',
-                color: i % 4 === 1 ? '#E53935' : 'var(--ak-text)',
-                opacity: i % 4 === 1 || i % 4 === 0 ? 1 : 0.28,
+                letterSpacing: '-.035em',
+                padding: '0 8px',
+                color: colorFor(i),
               }}
             >
-              {p}
+              {phrase}
             </span>
             <span
-              className="w-2 h-2 md:w-3 md:h-3"
               style={{
+                width: 13,
+                height: 13,
                 borderRadius: '50%',
-                background: '#E53935',
-                opacity: 0.6,
+                background: 'var(--ak-red)',
+                margin: '0 38px',
                 flexShrink: 0,
+                display: 'inline-block',
               }}
             />
           </Fragment>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

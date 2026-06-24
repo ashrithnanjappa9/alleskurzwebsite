@@ -8,87 +8,105 @@ export default function FinalCTA() {
   const { lang } = useLang();
   return (
     <section
-      className="px-5 py-24 md:px-[60px] md:py-[120px]"
+      id="download"
       style={{
+        background: 'var(--ak-red)',
+        color: '#fff',
         position: 'relative',
-        textAlign: 'center',
-        background:
-          'radial-gradient(ellipse at center, rgba(229,57,53,.16) 0%, transparent 60%), var(--ak-bg)',
-        borderTop: '1px solid var(--ak-border)',
         overflow: 'hidden',
+        textAlign: 'center',
+        padding: '120px 0',
       }}
     >
-      {/* Giant ghost "60" */}
       <div
         aria-hidden
-        className="text-[260px] sm:text-[360px] md:text-[520px]"
         style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
-          transform: 'translate(-50%, -50%)',
-          fontWeight: 800,
-          color: 'var(--ak-ghost-sixty)',
-          letterSpacing: '-.08em',
+          transform: 'translate(-50%, -48%)',
+          fontFamily: 'Georgia, "Times New Roman", serif',
+          fontWeight: 700,
+          fontSize: '60vh',
           lineHeight: 1,
+          color: 'rgba(255,255,255,.07)',
           pointerEvents: 'none',
-          fontVariantNumeric: 'tabular-nums',
           userSelect: 'none',
+          fontVariantNumeric: 'tabular-nums',
         }}
       >
         60
       </div>
 
-      <div className="max-w-[720px] mx-auto" style={{ position: 'relative', zIndex: 1 }}>
+      <div
+        className="mx-auto px-6 md:px-8"
+        style={{ maxWidth: 1240, position: 'relative', zIndex: 2 }}
+      >
         <div
           style={{
-            fontSize: 12,
-            fontWeight: 800,
-            letterSpacing: '.22em',
-            color: '#E53935',
+            fontSize: 13,
+            fontWeight: 700,
+            letterSpacing: '.2em',
             textTransform: 'uppercase',
+            color: 'rgba(255,255,255,.78)',
           }}
         >
           {COPY.finalCTA.kicker[lang]}
         </div>
         <h2
-          className="text-[44px] sm:text-[56px] md:text-[72px] my-4 md:my-[18px]"
           style={{
+            margin: '18px 0 0',
+            fontSize: 'clamp(46px, 7vw, 100px)',
             fontWeight: 800,
-            letterSpacing: '-.035em',
-            lineHeight: 0.98,
-            color: 'var(--ak-text)',
+            letterSpacing: '-.04em',
+            lineHeight: 0.96,
           }}
         >
           {COPY.finalCTA.title[lang]}
         </h2>
-        {/* CHANGE 2 — replaced sub copy lives in COPY.finalCTA.sub */}
         <p
-          className="text-[16px] md:text-[18px]"
           style={{
-            margin: '0 auto',
-            color: 'var(--ak-text-mute)',
-            maxWidth: 520,
-            lineHeight: 1.55,
+            margin: '22px auto 0',
+            fontSize: 'clamp(17px, 1.8vw, 21px)',
+            color: 'rgba(255,255,255,.92)',
+            fontWeight: 600,
           }}
         >
           {COPY.finalCTA.sub[lang]}
         </p>
-        <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
+        <p
+          style={{
+            marginTop: 8,
+            fontSize: 14,
+            fontWeight: 600,
+            letterSpacing: '.04em',
+            color: 'rgba(255,255,255,.66)',
+          }}
+        >
+          {COPY.finalCTA.tag[lang]}
+        </p>
+        <div
+          style={{
+            display: 'flex',
+            gap: 14,
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            marginTop: 44,
+          }}
+        >
           <StoreButton
             icon="apple"
             lead={COPY.hero.cta1Lead[lang]}
             label="App Store"
             href={APP_STORE_URL}
-            fullWidthMobile
+            onRed
           />
           <StoreButton
             icon="play"
             lead={COPY.hero.cta2Lead[lang]}
             label="Google Play"
             href={PLAY_STORE_URL}
-            variant="outline"
-            fullWidthMobile
+            onRed
           />
         </div>
       </div>

@@ -3,74 +3,82 @@
 @tailwind utilities;
 
 /* ── Theme tokens ──────────────────────────────────────────────────────────
-   Dark is the visual default (matches prototype). Light auto-activates via
-   prefers-color-scheme: light. Values lifted from THEMES.dark / THEMES.light
-   in the prototype (landing-dark.jsx). */
+   Dark is the visual default (matches the new Claude Design export).
+   Light auto-activates via prefers-color-scheme — no manual toggle. */
 :root {
   --ak-red:                    #E53935;
   --ak-red-deep:               #B71C1C;
+  --ak-red-press:              #C8302C;
+  --ak-red-tint:               rgba(229,57,53,.14);
 
-  --ak-bg:                     #0D0D0D;
+  --ak-bg:                     #0A0A0A;
   --ak-bg-soft:                #0A0A0A;
   --ak-bg-deep:                #080808;
   --ak-text:                   #FFFFFF;
-  --ak-text-mute:              rgba(255,255,255,.7);
-  --ak-text-dim:               rgba(255,255,255,.5);
-  --ak-text-faint:             rgba(255,255,255,.45);
-  --ak-surface:                #161616;
+  --ak-text-mute:              rgba(255,255,255,.62);
+  --ak-text-dim:               rgba(255,255,255,.40);
+  --ak-text-faint:             rgba(255,255,255,.40);
+  --ak-surface:                #141414;
   --ak-surface-alt:            #141414;
-  --ak-border:                 rgba(255,255,255,.06);
-  --ak-border-strong:          rgba(255,255,255,.08);
-  --ak-nav-bg:                 rgba(13,13,13,.78);
-  --ak-pill-bg:                rgba(229,57,53,.12);
-  --ak-avatar-ring:            #0D0D0D;
-  --ak-store-btn-bg:           #FFFFFF;
-  --ak-store-btn-text:         #0D0D0D;
+  --ak-surface-2:              #1B1B1B;
+  --ak-border:                 rgba(255,255,255,.12);
+  --ak-border-strong:          rgba(255,255,255,.12);
+  --ak-hair:                   rgba(255,255,255,.12);
+  --ak-hair-soft:              rgba(255,255,255,.07);
+  --ak-nav-bg:                 rgba(10,10,10,.72);
+  --ak-pill-bg:                rgba(229,57,53,.14);
+  --ak-avatar-ring:            #0A0A0A;
+  --ak-store-btn-bg:           #000000;
+  --ak-store-btn-text:         #FFFFFF;
   --ak-store-btn-outline:      #FFFFFF;
-  --ak-store-btn-outline-border: rgba(255,255,255,.2);
+  --ak-store-btn-outline-border: rgba(255,255,255,.22);
   --ak-ghost-sixty:            rgba(229,57,53,.05);
-  --ak-flare-big:              rgba(229,57,53,.19);
-  --ak-flare-edge:             rgba(229,57,53,.06);
-  --ak-flare-small:            rgba(229,57,53,.09);
+  --ak-flare-big:              rgba(229,57,53,.14);
+  --ak-flare-edge:             rgba(229,57,53,.04);
+  --ak-flare-small:            rgba(229,57,53,.06);
   --ak-photo-filter:           saturate(.85) contrast(1.05);
-  --ak-caption-bg:             rgba(13,13,13,.8);
+  --ak-caption-bg:             rgba(10,10,10,.8);
   --ak-caption-text:           #F6F4EF;
   --ak-marquee-dim:            .25;
   --ak-howcard-numbg:          rgba(255,255,255,.04);
+  --ak-shadow:                 0 50px 120px -40px rgba(0,0,0,.85);
 
-  /* Color scheme hint so native form controls / scrollbars follow. */
   color-scheme: dark;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --ak-bg:                   #F6F4EF;
+    --ak-bg:                   #F5F5F0;
     --ak-bg-soft:              #FBFAF6;
-    --ak-bg-deep:              #EFECE3;
-    --ak-text:                 #0D0D0D;
-    --ak-text-mute:            rgba(13,13,13,.72);
-    --ak-text-dim:             rgba(13,13,13,.55);
-    --ak-text-faint:           rgba(13,13,13,.45);
+    --ak-bg-deep:              #EFEDE6;
+    --ak-text:                 #0A0A0A;
+    --ak-text-mute:            rgba(10,10,10,.60);
+    --ak-text-dim:             rgba(10,10,10,.42);
+    --ak-text-faint:           rgba(10,10,10,.42);
     --ak-surface:              #FFFFFF;
     --ak-surface-alt:          #FBFAF6;
-    --ak-border:               rgba(13,13,13,.1);
-    --ak-border-strong:        rgba(13,13,13,.14);
-    --ak-nav-bg:               rgba(246,244,239,.82);
-    --ak-pill-bg:              rgba(229,57,53,.1);
-    --ak-avatar-ring:          #F6F4EF;
-    --ak-store-btn-bg:         #0D0D0D;
-    --ak-store-btn-text:       #F6F4EF;
-    --ak-store-btn-outline:    #0D0D0D;
-    --ak-store-btn-outline-border: rgba(13,13,13,.2);
+    --ak-surface-2:            #EFEDE6;
+    --ak-border:               rgba(10,10,10,.12);
+    --ak-border-strong:        rgba(10,10,10,.12);
+    --ak-hair:                 rgba(10,10,10,.12);
+    --ak-hair-soft:            rgba(10,10,10,.07);
+    --ak-nav-bg:               rgba(245,245,240,.78);
+    --ak-pill-bg:              rgba(229,57,53,.10);
+    --ak-avatar-ring:          #F5F5F0;
+    --ak-store-btn-bg:         #000000;
+    --ak-store-btn-text:       #FFFFFF;
+    --ak-store-btn-outline:    #0A0A0A;
+    --ak-store-btn-outline-border: rgba(10,10,10,.2);
     --ak-ghost-sixty:          rgba(229,57,53,.07);
-    --ak-flare-big:            rgba(229,57,53,.13);
-    --ak-flare-edge:           rgba(229,57,53,.03);
-    --ak-flare-small:          rgba(229,57,53,.07);
+    --ak-flare-big:            rgba(229,57,53,.10);
+    --ak-flare-edge:           rgba(229,57,53,.02);
+    --ak-flare-small:          rgba(229,57,53,.05);
     --ak-photo-filter:         saturate(.95) contrast(1.02);
-    --ak-caption-bg:           rgba(13,13,13,.82);
+    --ak-caption-bg:           rgba(10,10,10,.82);
     --ak-caption-text:         #F6F4EF;
     --ak-marquee-dim:          .3;
-    --ak-howcard-numbg:        rgba(13,13,13,.04);
+    --ak-howcard-numbg:        rgba(10,10,10,.04);
+    --ak-shadow:               0 50px 110px -45px rgba(0,0,0,.30);
 
     color-scheme: light;
   }
@@ -89,16 +97,26 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  line-height: 1.5;
+  transition: background .4s ease, color .4s ease;
 }
 
-a { color: inherit; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+a { color: inherit; text-decoration: none; }
 
 button { font-family: inherit; }
 
-/* Marquee animation lifted from the prototype. */
+::selection { background: var(--ak-red); color: #fff; }
+
 @keyframes akMarquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
+}
+
+@keyframes akFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
 }
 
 @keyframes akSkeleton {
@@ -112,7 +130,8 @@ button { font-family: inherit; }
   animation: akSkeleton 1.4s ease-in-out infinite;
 }
 
-/* 3-line clamp helper used by NewsCard. */
+/* Legacy 3-line clamp helper (used by NewsCard, retained even though NewsGrid is
+   no longer rendered — files preserved on disk). */
 .ak-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -120,36 +139,9 @@ button { font-family: inherit; }
   overflow: hidden;
 }
 
-/* News-briefs grid borders — column count flexes 1 → 2 → 4 across breakpoints,
-   so the dividing borders shift too. Pure CSS is far cleaner here than fighting
-   Tailwind nth-child variants. */
-.ak-news-grid > * {
-  border-bottom: 1px solid var(--ak-border);
-}
-.ak-news-grid > *:last-child {
-  border-bottom: 0;
-}
-@media (min-width: 768px) {
-  .ak-news-grid > * {
-    border-right: 1px solid var(--ak-border);
-    border-bottom: 1px solid var(--ak-border);
-  }
-  .ak-news-grid > *:nth-child(2n) {
-    border-right: 0;
-  }
-  .ak-news-grid > *:nth-last-child(-n+2) {
-    border-bottom: 0;
-  }
-}
-@media (min-width: 1024px) {
-  .ak-news-grid > * {
-    border-right: 1px solid var(--ak-border);
-    border-bottom: 0;
-  }
-  .ak-news-grid > *:nth-child(4n) {
-    border-right: 0;
-  }
-  .ak-news-grid > *:nth-child(-n+4) {
-    border-bottom: 1px solid var(--ak-border);
-  }
+/* Phone-float utility used by Hero's static device frame. */
+.ak-phone-float { animation: akFloat 7s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ak-phone-float { animation: none; }
 }
