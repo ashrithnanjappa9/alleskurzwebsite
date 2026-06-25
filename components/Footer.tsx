@@ -19,20 +19,21 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 md:gap-[40px]">
           <div>
             <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 11 }}>
-              <Image
-                src="/ak-icon.png"
-                alt="alleskurz"
-                width={40}
-                height={40}
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 10,
-                  flexShrink: 0,
-                  display: 'block',
-                  objectFit: 'cover',
-                }}
-              />
+              <div style={{ width: 40, height: 40, borderRadius: 10, overflow: 'hidden', flexShrink: 0 }}>
+                <Image
+                  src="/ak-icon.png"
+                  alt="alleskurz"
+                  width={40}
+                  height={40}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    display: 'block',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                />
+              </div>
               <span style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-.02em' }}>
                 alles<span style={{ color: 'var(--ak-red)' }}>kurz</span>
               </span>
