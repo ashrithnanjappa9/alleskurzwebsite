@@ -160,7 +160,7 @@ export default function Hero() {
                   borderRadius: 38,
                   overflow: 'hidden',
                   background: '#000',
-                  height: 620,
+                  height: 649,
                 }}
               >
                 <Image
