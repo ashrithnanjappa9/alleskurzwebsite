@@ -16,8 +16,8 @@ export default function LogoMark({ size = 40 }: { size?: number }) {
       <Image
         src="/ak-logo.png"
         alt="alles kurz"
-        width={40}
-        height={40}
+        width={size}
+        height={size}
         priority
         style={{
           width: '100%',
