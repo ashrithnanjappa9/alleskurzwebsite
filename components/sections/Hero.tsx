@@ -3,6 +3,7 @@
 import { useLang } from '../LangProvider';
 import { APP_STORE_URL, PLAY_STORE_URL, COPY } from '@/lib/copy';
 import StoreButton from '../StoreButton';
+import PhoneSwipeDeck from '../PhoneSwipeDeck';
 
 export default function Hero() {
   const { lang } = useLang();
@@ -127,55 +128,7 @@ export default function Hero() {
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
-            <div
-              className="ak-phone-float"
-              style={{
-                position: 'relative',
-                width: 318,
-                borderRadius: 46,
-                padding: 9,
-                background: 'linear-gradient(155deg, #2a2a2e, #131315 60%, #08080a)',
-                boxShadow: 'var(--ak-shadow), 0 0 0 1px rgba(255,255,255,.06) inset',
-              }}
-            >
-              <div
-                aria-hidden
-                style={{
-                  position: 'absolute',
-                  top: 12,
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: 92,
-                  height: 26,
-                  background: '#000',
-                  borderRadius: 999,
-                  zIndex: 5,
-                }}
-              />
-              <div
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  borderRadius: 38,
-                  overflow: 'hidden',
-                  background: '#000',
-                  height: 649,
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={shot}
-                  alt="alleskurz App"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'top center',
-                    display: 'block',
-                  }}
-                />
-              </div>
-            </div>
+            <PhoneSwipeDeck />
           </div>
         </div>
       </div>
