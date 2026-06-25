@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useLang } from '../LangProvider';
 import { APP_STORE_URL, PLAY_STORE_URL, COPY } from '@/lib/copy';
 import StoreButton from '../StoreButton';
@@ -163,13 +162,17 @@ export default function Hero() {
                   height: 649,
                 }}
               >
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={shot}
                   alt="alleskurz App"
-                  fill
-                  sizes="318px"
-                  style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                  priority
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'top center',
+                    display: 'block',
+                  }}
                 />
               </div>
             </div>
