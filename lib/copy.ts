@@ -179,7 +179,7 @@ export const COPY = {
       {
         heading: { de: 'Rechtliches', en: 'Legal' } as Bi,
         items: [
-          { label: { de: 'Impressum', en: 'Imprint' } as Bi },
+          { label: { de: 'Impressum', en: 'Imprint' } as Bi, href: '/impressum' },
           { label: { de: 'Datenschutz', en: 'Privacy' } as Bi, href: '/datenschutz' },
           { label: { de: 'AGB', en: 'Terms' } as Bi, href: '/agb' },
           { label: { de: 'Inhaltsrichtlinie', en: 'Content Policy' } as Bi, href: '/content-policy' },
