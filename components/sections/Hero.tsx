@@ -36,29 +36,9 @@ export default function Hero() {
       >
         <div className="grid grid-cols-1 md:grid-cols-[1.05fr_.95fr] items-center gap-12 md:gap-14">
           <div>
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 9,
-                background: 'var(--ak-pill-bg)',
-                color: 'var(--ak-red)',
-                border: '1px solid rgba(229,57,53,.32)',
-                borderRadius: 999,
-                padding: '7px 14px',
-                fontSize: 12,
-                fontWeight: 700,
-                letterSpacing: '.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--ak-red)' }} />
-              {COPY.hero.eyebrow[lang]}
-            </span>
-
             <h1
               style={{
-                margin: '24px 0 0',
+                margin: 0,
                 fontSize: 'clamp(46px, 6.4vw, 86px)',
                 fontWeight: 800,
                 lineHeight: 0.98,
