@@ -93,24 +93,24 @@ export const COPY = {
         n: '01',
         title: { de: 'Redaktion kuratiert', en: 'Editors curate' } as Bi,
         body: {
-          de: 'Unsere Redakteur:innen wählen täglich die Stories, die wirklich wichtig sind. Aus über 200 Quellen — keine Algorithmus-Blase, kein Engagement-Bait.',
-          en: "Our editors hand-pick the day's most important stories. From 200+ sources — no algorithm bubble, no engagement bait.",
+          de: 'Unsere Redaktion wählt täglich die wichtigsten Geschichten aus über 200 Quellen aus. Kein Algorithmus, kein Clickbait.',
+          en: "Our editors hand-pick the day's most important stories from 200+ sources. No algorithm bubble, no engagement bait.",
         } as Bi,
       },
       {
         n: '02',
         title: { de: 'KI fasst zusammen', en: 'AI summarises' } as Bi,
         body: {
-          de: 'Jeder Artikel wird auf exakt 60 Wörter eingedampft. Modelle prüfen Fakten gegen die Originalquelle — und Redakteur:innen lesen jede Zusammenfassung gegen, bevor sie live geht.',
-          en: 'Every article is distilled to exactly 60 words. Models fact-check against the source, and editors read every summary before it goes live.',
+          de: 'Jeder Artikel wird auf genau 60 Wörter destilliert. Unsere Redaktion liest jede Zusammenfassung bevor sie erscheint.',
+          en: 'Every article is distilled to exactly 60 words. Editors review every summary before it goes live.',
         } as Bi,
       },
       {
         n: '03',
         title: { de: 'Du wischst durch', en: 'You swipe through' } as Bi,
         body: {
-          de: 'Eine Story pro Karte. Hoch wischen für die nächste. Speichern, teilen, oder im Original lesen — alles ohne deine Konzentration zu brechen.',
-          en: 'One story per card. Swipe up for the next. Save, share, or open the original — all without breaking your focus.',
+          de: 'Eine Story pro Karte. Wisch weiter für die nächste. Speichern, teilen oder Original öffnen ohne den Fokus zu verlieren.',
+          en: 'One story per card. Swipe up for the next. Save, share or open the original without losing your place.',
         } as Bi,
       },
     ],
@@ -165,15 +165,6 @@ export const COPY = {
           { label: { de: 'iOS App', en: 'iOS app' } as Bi },
           { label: { de: 'Android App', en: 'Android app' } as Bi },
           { label: { de: 'Web Reader', en: 'Web reader' } as Bi },
-        ] as FooterItem[],
-      },
-      {
-        heading: { de: 'Redaktion', en: 'Newsroom' } as Bi,
-        items: [
-          { label: { de: 'Über uns', en: 'About' } as Bi },
-          { label: { de: 'Standards', en: 'Standards' } as Bi },
-          { label: { de: 'Methodik', en: 'Method' } as Bi },
-          { label: { de: 'Jobs', en: 'Careers' } as Bi },
         ] as FooterItem[],
       },
       {

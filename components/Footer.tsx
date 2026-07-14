@@ -16,7 +16,7 @@ export default function Footer() {
       }}
     >
       <div className="mx-auto px-6 md:px-8" style={{ maxWidth: 1240 }}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 md:gap-[40px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr] gap-10 md:gap-[40px]">
           <div>
             <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 11 }}>
               <div style={{ width: 40, height: 40, borderRadius: 10, overflow: 'hidden', flexShrink: 0 }}>
