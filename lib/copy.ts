@@ -58,8 +58,8 @@ export const COPY = {
     titleA: { de: 'Jede Nachricht.', en: 'Every story.' } as Bi,
     titleB: { de: 'Genau 60 Wörter.', en: 'Exactly 60 words.' } as Bi,
     sub: {
-      de: 'Schluss mit Schlagzeilen-Roulette. Jede Story kommt auf den Punkt — kuratiert von Redakteur:innen, zusammengefasst von KI, in unter 30 Sekunden gelesen.',
-      en: 'No more headline roulette. Every story, distilled — curated by editors, summarised by AI, read in under 30 seconds.',
+      de: 'Kein Schlagzeilen-Roulette mehr. Jede Story auf den Punkt gebracht, in unter 30 Sekunden gelesen.',
+      en: 'No more headline roulette. Every story to the point, read in under 30 seconds.',
     } as Bi,
     cta1: { de: 'Im App Store laden', en: 'Download on App Store' } as Bi,
     cta2: { de: 'Bei Google Play',    en: 'Get it on Google Play' } as Bi,
