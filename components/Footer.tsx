@@ -79,14 +79,30 @@ export default function Footer() {
                   fontWeight: 500,
                   transition: 'color .18s',
                 } as const;
-                return it.href ? (
+                if (!it.href) {
+                  return (
+                    <a key={it.label.de} href="#" style={style}>
+                      {it.label[lang]}
+                    </a>
+                  );
+                }
+                if (/^https?:\/\//.test(it.href)) {
+                  return (
+                    <a
+                      key={it.label.de}
+                      href={it.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={style}
+                    >
+                      {it.label[lang]}
+                    </a>
+                  );
+                }
+                return (
                   <Link key={it.label.de} href={it.href} style={style}>
                     {it.label[lang]}
                   </Link>
-                ) : (
-                  <a key={it.label.de} href="#" style={style}>
-                    {it.label[lang]}
-                  </a>
                 );
               })}
             </div>

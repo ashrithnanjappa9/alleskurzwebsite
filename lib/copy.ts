@@ -161,10 +161,8 @@ export const COPY = {
       {
         heading: { de: 'Produkt', en: 'Product' } as Bi,
         items: [
-          { label: { de: 'Funktionen', en: 'Features' } as Bi },
-          { label: { de: 'iOS App', en: 'iOS app' } as Bi },
-          { label: { de: 'Android App', en: 'Android app' } as Bi },
-          { label: { de: 'Web Reader', en: 'Web reader' } as Bi },
+          { label: { de: 'iOS App', en: 'iOS app' } as Bi, href: APP_STORE_URL },
+          { label: { de: 'Android App', en: 'Android app' } as Bi, href: PLAY_STORE_URL },
         ] as FooterItem[],
       },
       {
