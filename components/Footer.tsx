@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useLang } from './LangProvider';
 import { COPY } from '@/lib/copy';
 
@@ -20,19 +19,23 @@ export default function Footer() {
           <div>
             <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 11 }}>
               <div style={{ width: 40, height: 40, borderRadius: 10, overflow: 'hidden', flexShrink: 0 }}>
-                <Image
-                  src="/ak-icon.png"
-                  alt="alleskurz"
-                  width={40}
-                  height={40}
-                  style={{
-                    width: 40,
-                    height: 40,
-                    display: 'block',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                  }}
-                />
+                <picture>
+                  <source srcSet="/ak-mark-on-light.svg" media="(prefers-color-scheme: light)" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/ak-mark-on-dark.svg"
+                    alt="alleskurz"
+                    width={40}
+                    height={40}
+                    style={{
+                      width: 40,
+                      height: 40,
+                      display: 'block',
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                    }}
+                  />
+                </picture>
               </div>
               <span style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-.02em' }}>
                 alles<span style={{ color: 'var(--ak-red)' }}>kurz</span>

@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 export default function LogoMark({ size = 40 }: { size?: number }) {
   return (
     <div
@@ -13,19 +11,22 @@ export default function LogoMark({ size = 40 }: { size?: number }) {
         lineHeight: 0,
       }}
     >
-      <Image
-        src="/ak-logo.png"
-        alt="alles kurz"
-        width={size}
-        height={size}
-        priority
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          display: 'block',
-        }}
-      />
+      <picture>
+        <source srcSet="/ak-mark-on-light.svg" media="(prefers-color-scheme: light)" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/ak-mark-on-dark.svg"
+          alt="alles kurz"
+          width={size}
+          height={size}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
+          }}
+        />
+      </picture>
     </div>
   );
 }

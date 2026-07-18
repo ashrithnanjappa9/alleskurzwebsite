@@ -13,13 +13,14 @@ const schibsted = Schibsted_Grotesk({
 export const metadata: Metadata = {
   title: 'alles kurz — Nachrichten in 60 Wörtern',
   description:
-    'Jede Story. Genau 60 Wörter. Kuratiert von Redakteur:innen, zusammengefasst von KI, in unter 30 Sekunden gelesen.',
+    'Jede Story. Genau 60 Wörter. Aus über 30 deutschen Quellen von KI zusammengefasst, in unter 30 Sekunden gelesen.',
   metadataBase: new URL('https://www.alleskurz.com'),
   openGraph: {
     title: 'alles kurz — Nachrichten in 60 Wörtern',
     description: 'Jede Story. Genau 60 Wörter.',
     locale: 'de_DE',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'alles kurz' }],
   },
 };
 

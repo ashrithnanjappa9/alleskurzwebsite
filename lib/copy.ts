@@ -91,18 +91,18 @@ export const COPY = {
     steps: [
       {
         n: '01',
-        title: { de: 'Redaktion kuratiert', en: 'Editors curate' } as Bi,
+        title: { de: 'Quellen kuratiert', en: 'Curated sources' } as Bi,
         body: {
-          de: 'Unsere Redaktion wählt täglich die wichtigsten Geschichten aus über 200 Quellen aus. Kein Algorithmus, kein Clickbait.',
-          en: "Our editors hand-pick the day's most important stories from 200+ sources. No algorithm bubble, no engagement bait.",
+          de: 'Wir aggregieren täglich aus über 30 sorgfältig ausgewählten deutschen Nachrichtenquellen — von Tagesschau bis Handelsblatt. Kein Clickbait, keine Boulevardpresse.',
+          en: 'We aggregate daily from 30+ carefully chosen German news sources — from Tagesschau to Handelsblatt. No clickbait, no tabloids.',
         } as Bi,
       },
       {
         n: '02',
         title: { de: 'KI fasst zusammen', en: 'AI summarises' } as Bi,
         body: {
-          de: 'Jeder Artikel wird auf genau 60 Wörter destilliert. Unsere Redaktion liest jede Zusammenfassung bevor sie erscheint.',
-          en: 'Every article is distilled to exactly 60 words. Editors review every summary before it goes live.',
+          de: 'Jeder Artikel wird von KI auf genau 60 Wörter destilliert — neutral, präzise, ohne Meinung. Jede Zusammenfassung verlinkt zur Originalquelle.',
+          en: 'Every article is distilled by AI to exactly 60 words — neutral, precise, opinion-free. Every summary links to the original source.',
         } as Bi,
       },
       {
