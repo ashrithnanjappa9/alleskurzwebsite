@@ -93,16 +93,16 @@ export const COPY = {
         n: '01',
         title: { de: 'Quellen kuratiert', en: 'Curated sources' } as Bi,
         body: {
-          de: 'Wir aggregieren täglich aus über 30 sorgfältig ausgewählten deutschen Nachrichtenquellen — von Tagesschau bis Handelsblatt. Kein Clickbait, keine Boulevardpresse.',
-          en: 'We aggregate daily from 30+ carefully chosen German news sources — from Tagesschau to Handelsblatt. No clickbait, no tabloids.',
+          de: 'Wir aggregieren täglich aus über 30 sorgfältig ausgewählten deutschen Nachrichtenquellen, von Tagesschau bis Handelsblatt. Kein Clickbait, keine Boulevardpresse.',
+          en: 'We aggregate daily from 30+ carefully chosen German news sources, from Tagesschau to Handelsblatt. No clickbait, no tabloids.',
         } as Bi,
       },
       {
         n: '02',
         title: { de: 'KI fasst zusammen', en: 'AI summarises' } as Bi,
         body: {
-          de: 'Jeder Artikel wird von KI auf genau 60 Wörter destilliert — neutral, präzise, ohne Meinung. Jede Zusammenfassung verlinkt zur Originalquelle.',
-          en: 'Every article is distilled by AI to exactly 60 words — neutral, precise, opinion-free. Every summary links to the original source.',
+          de: 'Jeder Artikel wird von KI auf genau 60 Wörter destilliert. Neutral, präzise, ohne Meinung. Jede Zusammenfassung verlinkt zur Originalquelle.',
+          en: 'Every article is distilled by AI to exactly 60 words. Neutral, precise, opinion-free. Every summary links to the original source.',
         } as Bi,
       },
       {
