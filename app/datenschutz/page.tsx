@@ -89,8 +89,8 @@ const SECTIONS: { heading: string; body: string; bullets?: string[] }[] = [
     body: 'Um die App zu verbessern, erheben wir über Mixpanel anonyme Nutzungsdaten — etwa welche Funktionen geöffnet werden. Es werden keine persönlichen Daten, keine Namen und keine E-Mail-Adressen erfasst. Die Daten lassen sich nicht auf dich zurückführen. Wir verwenden Mixpanel zur anonymen Nutzungsanalyse. Dabei wird die IP-Adresse zur Bestimmung des ungefähren Standorts (Land, Stadt) verwendet und anschließend nicht gespeichert. Mixpanel verarbeitet diese Daten auf EU-Servern.',
   },
   {
-    heading: 'Altersgruppe und Interessen',
-    body: 'Bei der Einrichtung der App wählst du eine Altersgruppe und Themenpräferenzen. Diese Angaben werden ausschließlich lokal auf deinem Gerät gespeichert, um den Newsfeed zu personalisieren. Sie werden nicht an unsere Server übermittelt und nicht mit Mixpanel geteilt.',
+    heading: 'Themenpräferenzen',
+    body: 'Bei der Einrichtung der App wählst du deine Themenpräferenzen. Diese Angaben werden ausschließlich lokal auf deinem Gerät gespeichert, um den Newsfeed zu personalisieren. Sie werden nicht an unsere Server übermittelt und nicht mit Mixpanel geteilt.',
   },
   {
     heading: 'Kein Tracking',
